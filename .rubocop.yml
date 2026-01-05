@@ -1,0 +1,13 @@
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
+
+plugins:
+  - "rubocop-md"
+
+Style/StringLiterals:
+  Include:
+    - "**/*"
+    - "docs/*"
+
+Style/ClassAndModuleChildren:
+  Enabled: true
