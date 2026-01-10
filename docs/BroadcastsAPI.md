@@ -10,7 +10,7 @@
 
 ## list
 
-> <PaginatedResponseOfBroadcastResponse> list(channel_id, opts)
+> <PaginatedResponseOfBroadcast> list(channel_id, opts)
 
 List broadcasts
 
@@ -35,7 +35,7 @@ Helo::Broadcasts.list(channel_id, opts)
 
 ## list_failures
 
-> <BroadcastFailuresResponse> list_failures(id)
+> <PaginatedResponseOfBroadcastFailure> list_failures(id)
 
 List broadcast failures
 
@@ -54,7 +54,7 @@ Helo::Broadcasts.list_failures(id)
 
 ## list_suppressions
 
-> <BroadcastSuppressionsResponse> list_suppressions(id)
+> <PaginatedResponseOfBroadcastSuppression> list_suppressions(id)
 
 List broadcast suppressions
 

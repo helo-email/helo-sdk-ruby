@@ -41,7 +41,7 @@ describe "BroadcastsAPI" do
   # @option opts [String] :subject
   # @option opts [Integer] :limit
   # @option opts [Integer] :offset
-  # @return [PaginatedResponseOfBroadcastResponse]
+  # @return [PaginatedResponseOfBroadcast]
   describe "list test" do
     it "should work" do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
@@ -53,7 +53,7 @@ describe "BroadcastsAPI" do
   # Retrieves a list of failed messages for a specific broadcast.
   # @param id
   # @param [Hash] opts the optional parameters
-  # @return [BroadcastFailuresResponse]
+  # @return [PaginatedResponseOfBroadcastFailure]
   describe "list_failures test" do
     it "should work" do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
@@ -65,7 +65,7 @@ describe "BroadcastsAPI" do
   # Retrieves a list of suppressed recipients for a specific broadcast.
   # @param id
   # @param [Hash] opts the optional parameters
-  # @return [BroadcastSuppressionsResponse]
+  # @return [PaginatedResponseOfBroadcastSuppression]
   describe "list_suppressions test" do
     it "should work" do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/

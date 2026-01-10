@@ -14,47 +14,22 @@ require "date"
 require "time"
 
 module Helo
-  class SendBroadcastRequestAttachmentsInner
-    attr_accessor :content
+  class BroadcastFailureResponse
+    attr_accessor :recipients
 
-    attr_accessor :content_id
+    attr_accessor :message_index
 
-    attr_accessor :content_type
+    attr_accessor :error_code
 
-    attr_accessor :file_name
-
-    attr_accessor :disposition
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :error_message
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        'content': :'content',
-        'content_id': :'contentId',
-        'content_type': :'contentType',
-        'file_name': :'fileName',
-        'disposition': :'disposition'
+        'recipients': :'recipients',
+        'message_index': :'messageIndex',
+        'error_code': :'errorCode',
+        'error_message': :'errorMessage'
       }
     end
 
@@ -71,11 +46,10 @@ module Helo
     # Attribute type mapping.
     def self.openapi_types
       {
-        'content': :'String',
-        'content_id': :'String',
-        'content_type': :'String',
-        'file_name': :'String',
-        'disposition': :'String'
+        'recipients': :'RecipientHeaders',
+        'message_index': :'Integer',
+        'error_code': :'String',
+        'error_message': :'String'
       }
     end
 
@@ -88,42 +62,40 @@ module Helo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if !attributes.is_a?(Hash)
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::SendBroadcastRequestAttachmentsInner` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::BroadcastFailureResponse` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if !acceptable_attribute_map.key?(k.to_sym)
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::SendBroadcastRequestAttachmentsInner`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::BroadcastFailureResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'content')
-        self.content = attributes[:'content']
+      if attributes.key?(:'recipients')
+        self.recipients = attributes[:'recipients']
       else
-        self.content = nil
+        self.recipients = nil
       end
 
-      if attributes.key?(:'content_id')
-        self.content_id = attributes[:'content_id']
-      end
-
-      if attributes.key?(:'content_type')
-        self.content_type = attributes[:'content_type']
-      end
-
-      if attributes.key?(:'file_name')
-        self.file_name = attributes[:'file_name']
+      if attributes.key?(:'message_index')
+        self.message_index = attributes[:'message_index']
       else
-        self.file_name = nil
+        self.message_index = nil
       end
 
-      if attributes.key?(:'disposition')
-        self.disposition = attributes[:'disposition']
+      if attributes.key?(:'error_code')
+        self.error_code = attributes[:'error_code']
       else
-        self.disposition = nil
+        self.error_code = nil
+      end
+
+      if attributes.key?(:'error_message')
+        self.error_message = attributes[:'error_message']
+      else
+        self.error_message = nil
       end
     end
 
@@ -132,16 +104,20 @@ module Helo
     def list_invalid_properties
       warn "[DEPRECATED] the `list_invalid_properties` method is obsolete"
       invalid_properties = Array.new
-      if @content.nil?
-        invalid_properties.push('invalid value for "content", content cannot be nil.')
+      if @recipients.nil?
+        invalid_properties.push('invalid value for "recipients", recipients cannot be nil.')
       end
 
-      if @file_name.nil?
-        invalid_properties.push('invalid value for "file_name", file_name cannot be nil.')
+      if @message_index.nil?
+        invalid_properties.push('invalid value for "message_index", message_index cannot be nil.')
       end
 
-      if @disposition.nil?
-        invalid_properties.push('invalid value for "disposition", disposition cannot be nil.')
+      if @error_code.nil?
+        invalid_properties.push('invalid value for "error_code", error_code cannot be nil.')
+      end
+
+      if @error_message.nil?
+        invalid_properties.push('invalid value for "error_message", error_message cannot be nil.')
       end
 
       invalid_properties
@@ -151,47 +127,35 @@ module Helo
     # @return true if the model is valid
     def valid?
       warn "[DEPRECATED] the `valid?` method is obsolete"
-      return false if @content.nil?
-      return false if @file_name.nil?
-      return false if @disposition.nil?
-      disposition_validator = EnumAttributeValidator.new("String", [ "attachment", "inline" ])
-      return false unless disposition_validator.valid?(@disposition)
+      return false if @recipients.nil?
+      return false if @message_index.nil?
+      return false if @error_code.nil?
+      return false if @error_message.nil?
       true
     end
 
     # Attribute writer method
-    # @param [Object] content Object to be assigned
-    def content=(content)
-      @content = content
+    # @param [Object] recipients Object to be assigned
+    def recipients=(recipients)
+      @recipients = recipients
     end
 
     # Attribute writer method
-    # @param [Object] content_id Object to be assigned
-    def content_id=(content_id)
-      @content_id = content_id
+    # @param [Object] message_index Object to be assigned
+    def message_index=(message_index)
+      @message_index = message_index&.to_i
     end
 
     # Attribute writer method
-    # @param [Object] content_type Object to be assigned
-    def content_type=(content_type)
-      @content_type = content_type
+    # @param [Object] error_code Object to be assigned
+    def error_code=(error_code)
+      @error_code = error_code
     end
 
     # Attribute writer method
-    # @param [Object] file_name Object to be assigned
-    def file_name=(file_name)
-      @file_name = file_name
-    end
-
-    # List of values valid for disposition
-    def self.disposition_valid_values
-    [ "attachment", "inline" ]
-    end
-
-    # Attribute writer method
-    # @param [Object] disposition Object to be assigned
-    def disposition=(disposition)
-      @disposition = disposition
+    # @param [Object] error_message Object to be assigned
+    def error_message=(error_message)
+      @error_message = error_message
     end
 
     # Checks equality by comparing each attribute.
@@ -199,11 +163,10 @@ module Helo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          content == o.content &&
-          content_id == o.content_id &&
-          content_type == o.content_type &&
-          file_name == o.file_name &&
-          disposition == o.disposition
+          recipients == o.recipients &&
+          message_index == o.message_index &&
+          error_code == o.error_code &&
+          error_message == o.error_message
     end
 
     # @see the `==` method
@@ -215,7 +178,7 @@ module Helo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [ content, content_id, content_type, file_name, disposition ].hash
+      [ recipients, message_index, error_code, error_message ].hash
     end
 
     # Outputs specified attributes and their values as a hash

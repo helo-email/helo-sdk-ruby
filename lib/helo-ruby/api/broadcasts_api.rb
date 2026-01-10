@@ -27,7 +27,7 @@ module Helo
     # @option opts [String] :subject
     # @option opts [Integer] :limit
     # @option opts [Integer] :offset
-    # @return [PaginatedResponseOfBroadcastResponse]
+    # @return [PaginatedResponseOfBroadcast]
     def list(channel_id, opts = {})
       data, _status_code, _headers = list_with_http_info(channel_id, opts)
       data
@@ -41,7 +41,7 @@ module Helo
     # @option opts [String] :subject
     # @option opts [Integer] :limit
     # @option opts [Integer] :offset
-    # @return [Array<(PaginatedResponseOfBroadcastResponse, Integer, Hash)>] PaginatedResponseOfBroadcastResponse data, response status code and response headers
+    # @return [Array<(PaginatedResponseOfBroadcast, Integer, Hash)>] PaginatedResponseOfBroadcast data, response status code and response headers
     def list_with_http_info(channel_id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: BroadcastsAPI.list ..."
@@ -88,7 +88,7 @@ module Helo
       return_type = opts[:debug_return_type]
 
       return_types_map = {
-        200 => "PaginatedResponseOfBroadcastResponse",
+        200 => "PaginatedResponseOfBroadcast",
         401 => nil,
         403 => "ErrorResponse",
         422 => "ErrorResponse",
@@ -120,7 +120,7 @@ module Helo
     # Retrieves a list of failed messages for a specific broadcast.
     # @param id [String]
     # @param [Hash] opts the optional parameters
-    # @return [BroadcastFailuresResponse]
+    # @return [PaginatedResponseOfBroadcastFailure]
     def list_failures(id, opts = {})
       data, _status_code, _headers = list_failures_with_http_info(id, opts)
       data
@@ -130,7 +130,7 @@ module Helo
     # Retrieves a list of failed messages for a specific broadcast.
     # @param id [String]
     # @param [Hash] opts the optional parameters
-    # @return [Array<(BroadcastFailuresResponse, Integer, Hash)>] BroadcastFailuresResponse data, response status code and response headers
+    # @return [Array<(PaginatedResponseOfBroadcastFailure, Integer, Hash)>] PaginatedResponseOfBroadcastFailure data, response status code and response headers
     def list_failures_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: BroadcastsAPI.list_failures ..."
@@ -160,7 +160,7 @@ module Helo
       return_type = opts[:debug_return_type]
 
       return_types_map = {
-        200 => "BroadcastFailuresResponse",
+        200 => "PaginatedResponseOfBroadcastFailure",
         401 => nil,
         403 => "ErrorResponse",
         404 => "ErrorResponse",
@@ -193,7 +193,7 @@ module Helo
     # Retrieves a list of suppressed recipients for a specific broadcast.
     # @param id [String]
     # @param [Hash] opts the optional parameters
-    # @return [BroadcastSuppressionsResponse]
+    # @return [PaginatedResponseOfBroadcastSuppression]
     def list_suppressions(id, opts = {})
       data, _status_code, _headers = list_suppressions_with_http_info(id, opts)
       data
@@ -203,7 +203,7 @@ module Helo
     # Retrieves a list of suppressed recipients for a specific broadcast.
     # @param id [String]
     # @param [Hash] opts the optional parameters
-    # @return [Array<(BroadcastSuppressionsResponse, Integer, Hash)>] BroadcastSuppressionsResponse data, response status code and response headers
+    # @return [Array<(PaginatedResponseOfBroadcastSuppression, Integer, Hash)>] PaginatedResponseOfBroadcastSuppression data, response status code and response headers
     def list_suppressions_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: BroadcastsAPI.list_suppressions ..."
@@ -233,7 +233,7 @@ module Helo
       return_type = opts[:debug_return_type]
 
       return_types_map = {
-        200 => "BroadcastSuppressionsResponse",
+        200 => "PaginatedResponseOfBroadcastSuppression",
         401 => nil,
         403 => "ErrorResponse",
         404 => "ErrorResponse",

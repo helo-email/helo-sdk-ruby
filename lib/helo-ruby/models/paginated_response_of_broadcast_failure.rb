@@ -14,22 +14,16 @@ require "date"
 require "time"
 
 module Helo
-  class BroadcastFailure
-    attr_accessor :recipients
+  class PaginatedResponseOfBroadcastFailure
+    attr_accessor :total_count
 
-    attr_accessor :message_index
-
-    attr_accessor :error_code
-
-    attr_accessor :error_message
+    attr_accessor :results
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        'recipients': :'recipients',
-        'message_index': :'messageIndex',
-        'error_code': :'errorCode',
-        'error_message': :'errorMessage'
+        'total_count': :'totalCount',
+        'results': :'results'
       }
     end
 
@@ -46,10 +40,8 @@ module Helo
     # Attribute type mapping.
     def self.openapi_types
       {
-        'recipients': :'RecipientHeaders',
-        'message_index': :'Integer',
-        'error_code': :'String',
-        'error_message': :'String'
+        'total_count': :'Integer',
+        'results': :'Array<BroadcastFailureResponse>'
       }
     end
 
@@ -62,40 +54,30 @@ module Helo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if !attributes.is_a?(Hash)
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::BroadcastFailure` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::PaginatedResponseOfBroadcastFailure` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if !acceptable_attribute_map.key?(k.to_sym)
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::BroadcastFailure`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::PaginatedResponseOfBroadcastFailure`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'recipients')
-        self.recipients = attributes[:'recipients']
+      if attributes.key?(:'total_count')
+        self.total_count = attributes[:'total_count']
       else
-        self.recipients = nil
+        self.total_count = nil
       end
 
-      if attributes.key?(:'message_index')
-        self.message_index = attributes[:'message_index']
+      if attributes.key?(:'results')
+        if (value = attributes[:'results']).is_a?(Array)
+          self.results = value
+        end
       else
-        self.message_index = nil
-      end
-
-      if attributes.key?(:'error_code')
-        self.error_code = attributes[:'error_code']
-      else
-        self.error_code = nil
-      end
-
-      if attributes.key?(:'error_message')
-        self.error_message = attributes[:'error_message']
-      else
-        self.error_message = nil
+        self.results = nil
       end
     end
 
@@ -104,20 +86,12 @@ module Helo
     def list_invalid_properties
       warn "[DEPRECATED] the `list_invalid_properties` method is obsolete"
       invalid_properties = Array.new
-      if @recipients.nil?
-        invalid_properties.push('invalid value for "recipients", recipients cannot be nil.')
+      if @total_count.nil?
+        invalid_properties.push('invalid value for "total_count", total_count cannot be nil.')
       end
 
-      if @message_index.nil?
-        invalid_properties.push('invalid value for "message_index", message_index cannot be nil.')
-      end
-
-      if @error_code.nil?
-        invalid_properties.push('invalid value for "error_code", error_code cannot be nil.')
-      end
-
-      if @error_message.nil?
-        invalid_properties.push('invalid value for "error_message", error_message cannot be nil.')
+      if @results.nil?
+        invalid_properties.push('invalid value for "results", results cannot be nil.')
       end
 
       invalid_properties
@@ -127,35 +101,21 @@ module Helo
     # @return true if the model is valid
     def valid?
       warn "[DEPRECATED] the `valid?` method is obsolete"
-      return false if @recipients.nil?
-      return false if @message_index.nil?
-      return false if @error_code.nil?
-      return false if @error_message.nil?
+      return false if @total_count.nil?
+      return false if @results.nil?
       true
     end
 
     # Attribute writer method
-    # @param [Object] recipients Object to be assigned
-    def recipients=(recipients)
-      @recipients = recipients
+    # @param [Object] total_count Object to be assigned
+    def total_count=(total_count)
+      @total_count = total_count&.to_i
     end
 
     # Attribute writer method
-    # @param [Object] message_index Object to be assigned
-    def message_index=(message_index)
-      @message_index = message_index&.to_i
-    end
-
-    # Attribute writer method
-    # @param [Object] error_code Object to be assigned
-    def error_code=(error_code)
-      @error_code = error_code
-    end
-
-    # Attribute writer method
-    # @param [Object] error_message Object to be assigned
-    def error_message=(error_message)
-      @error_message = error_message
+    # @param [Object] results Object to be assigned
+    def results=(results)
+      @results = results
     end
 
     # Checks equality by comparing each attribute.
@@ -163,10 +123,8 @@ module Helo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          recipients == o.recipients &&
-          message_index == o.message_index &&
-          error_code == o.error_code &&
-          error_message == o.error_message
+          total_count == o.total_count &&
+          results == o.results
     end
 
     # @see the `==` method
@@ -178,7 +136,7 @@ module Helo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [ recipients, message_index, error_code, error_message ].hash
+      [ total_count, results ].hash
     end
 
     # Outputs specified attributes and their values as a hash

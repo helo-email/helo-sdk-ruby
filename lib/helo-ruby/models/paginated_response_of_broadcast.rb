@@ -14,41 +14,16 @@ require "date"
 require "time"
 
 module Helo
-  class BroadcastContentAttachmentsInner
-    attr_accessor :file_name
+  class PaginatedResponseOfBroadcast
+    attr_accessor :total_count
 
-    attr_accessor :disposition
-
-    attr_accessor :size
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :results
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        'file_name': :'fileName',
-        'disposition': :'disposition',
-        'size': :'size'
+        'total_count': :'totalCount',
+        'results': :'results'
       }
     end
 
@@ -65,9 +40,8 @@ module Helo
     # Attribute type mapping.
     def self.openapi_types
       {
-        'file_name': :'String',
-        'disposition': :'AttachmentDisposition',
-        'size': :'Integer'
+        'total_count': :'Integer',
+        'results': :'Array<BroadcastResponse>'
       }
     end
 
@@ -80,34 +54,30 @@ module Helo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if !attributes.is_a?(Hash)
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::BroadcastContentAttachmentsInner` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::PaginatedResponseOfBroadcast` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if !acceptable_attribute_map.key?(k.to_sym)
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::BroadcastContentAttachmentsInner`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::PaginatedResponseOfBroadcast`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'file_name')
-        self.file_name = attributes[:'file_name']
+      if attributes.key?(:'total_count')
+        self.total_count = attributes[:'total_count']
       else
-        self.file_name = nil
+        self.total_count = nil
       end
 
-      if attributes.key?(:'disposition')
-        self.disposition = attributes[:'disposition']
+      if attributes.key?(:'results')
+        if (value = attributes[:'results']).is_a?(Array)
+          self.results = value
+        end
       else
-        self.disposition = nil
-      end
-
-      if attributes.key?(:'size')
-        self.size = attributes[:'size']
-      else
-        self.size = nil
+        self.results = nil
       end
     end
 
@@ -116,16 +86,12 @@ module Helo
     def list_invalid_properties
       warn "[DEPRECATED] the `list_invalid_properties` method is obsolete"
       invalid_properties = Array.new
-      if @file_name.nil?
-        invalid_properties.push('invalid value for "file_name", file_name cannot be nil.')
+      if @total_count.nil?
+        invalid_properties.push('invalid value for "total_count", total_count cannot be nil.')
       end
 
-      if @disposition.nil?
-        invalid_properties.push('invalid value for "disposition", disposition cannot be nil.')
-      end
-
-      if @size.nil?
-        invalid_properties.push('invalid value for "size", size cannot be nil.')
+      if @results.nil?
+        invalid_properties.push('invalid value for "results", results cannot be nil.')
       end
 
       invalid_properties
@@ -135,28 +101,21 @@ module Helo
     # @return true if the model is valid
     def valid?
       warn "[DEPRECATED] the `valid?` method is obsolete"
-      return false if @file_name.nil?
-      return false if @disposition.nil?
-      return false if @size.nil?
+      return false if @total_count.nil?
+      return false if @results.nil?
       true
     end
 
     # Attribute writer method
-    # @param [Object] file_name Object to be assigned
-    def file_name=(file_name)
-      @file_name = file_name
+    # @param [Object] total_count Object to be assigned
+    def total_count=(total_count)
+      @total_count = total_count&.to_i
     end
 
     # Attribute writer method
-    # @param [Object] disposition Object to be assigned
-    def disposition=(disposition)
-      @disposition = disposition
-    end
-
-    # Attribute writer method
-    # @param [Object] size Object to be assigned
-    def size=(size)
-      @size = size&.to_i
+    # @param [Object] results Object to be assigned
+    def results=(results)
+      @results = results
     end
 
     # Checks equality by comparing each attribute.
@@ -164,9 +123,8 @@ module Helo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          file_name == o.file_name &&
-          disposition == o.disposition &&
-          size == o.size
+          total_count == o.total_count &&
+          results == o.results
     end
 
     # @see the `==` method
@@ -178,7 +136,7 @@ module Helo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [ file_name, disposition, size ].hash
+      [ total_count, results ].hash
     end
 
     # Outputs specified attributes and their values as a hash

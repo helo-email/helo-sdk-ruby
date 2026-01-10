@@ -27,6 +27,10 @@ module Helo
 
     attr_accessor :messages
 
+    attr_accessor :failed
+
+    attr_accessor :suppressed
+
     attr_accessor :content
 
     attr_accessor :tracking
@@ -64,6 +68,8 @@ module Helo
         'subject': :'subject',
         'completion': :'completion',
         'messages': :'messages',
+        'failed': :'failed',
+        'suppressed': :'suppressed',
         'content': :'content',
         'tracking': :'tracking',
         'statistics': :'statistics'
@@ -89,6 +95,8 @@ module Helo
         'subject': :'String',
         'completion': :'String',
         'messages': :'Integer',
+        'failed': :'Integer',
+        'suppressed': :'Integer',
         'content': :'BroadcastContent',
         'tracking': :'BroadcastTracking',
         'statistics': :'BroadcastStatistics'
@@ -152,6 +160,18 @@ module Helo
         self.messages = nil
       end
 
+      if attributes.key?(:'failed')
+        self.failed = attributes[:'failed']
+      else
+        self.failed = nil
+      end
+
+      if attributes.key?(:'suppressed')
+        self.suppressed = attributes[:'suppressed']
+      else
+        self.suppressed = nil
+      end
+
       if attributes.key?(:'content')
         self.content = attributes[:'content']
       else
@@ -200,6 +220,14 @@ module Helo
         invalid_properties.push('invalid value for "messages", messages cannot be nil.')
       end
 
+      if @failed.nil?
+        invalid_properties.push('invalid value for "failed", failed cannot be nil.')
+      end
+
+      if @suppressed.nil?
+        invalid_properties.push('invalid value for "suppressed", suppressed cannot be nil.')
+      end
+
       if @content.nil?
         invalid_properties.push('invalid value for "content", content cannot be nil.')
       end
@@ -225,6 +253,8 @@ module Helo
       return false if @subject.nil?
       return false if @completion.nil?
       return false if @messages.nil?
+      return false if @failed.nil?
+      return false if @suppressed.nil?
       return false if @content.nil?
       return false if @tracking.nil?
       return false if @statistics.nil?
@@ -268,6 +298,18 @@ module Helo
     end
 
     # Attribute writer method
+    # @param [Object] failed Object to be assigned
+    def failed=(failed)
+      @failed = failed&.to_i
+    end
+
+    # Attribute writer method
+    # @param [Object] suppressed Object to be assigned
+    def suppressed=(suppressed)
+      @suppressed = suppressed&.to_i
+    end
+
+    # Attribute writer method
     # @param [Object] content Object to be assigned
     def content=(content)
       @content = content
@@ -296,6 +338,8 @@ module Helo
           subject == o.subject &&
           completion == o.completion &&
           messages == o.messages &&
+          failed == o.failed &&
+          suppressed == o.suppressed &&
           content == o.content &&
           tracking == o.tracking &&
           statistics == o.statistics
@@ -310,7 +354,7 @@ module Helo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [ id, created_at, status, subject, completion, messages, content, tracking, statistics ].hash
+      [ id, created_at, status, subject, completion, messages, failed, suppressed, content, tracking, statistics ].hash
     end
 
     # Outputs specified attributes and their values as a hash

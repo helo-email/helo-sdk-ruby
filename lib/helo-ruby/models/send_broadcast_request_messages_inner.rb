@@ -56,9 +56,9 @@ module Helo
     # Attribute type mapping.
     def self.openapi_types
       {
-        'to': :'Array<MailAddress>',
-        'cc': :'Array<MailAddress>',
-        'bcc': :'Array<MailAddress>',
+        'to': :'Array<MailAddress1>',
+        'cc': :'Array<MailAddress1>',
+        'bcc': :'Array<MailAddress1>',
         'tags': :'Array<String>',
         'headers': :'Object',
         'metadata': :'Object',

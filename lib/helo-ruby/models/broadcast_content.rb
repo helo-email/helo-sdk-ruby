@@ -17,6 +17,8 @@ module Helo
   class BroadcastContent
     attr_accessor :from
 
+    attr_accessor :reply_to
+
     attr_accessor :template
 
     attr_accessor :attachments
@@ -31,6 +33,7 @@ module Helo
     def self.attribute_map
       {
         'from': :'from',
+        'reply_to': :'replyTo',
         'template': :'template',
         'attachments': :'attachments',
         'tags': :'tags',
@@ -52,7 +55,8 @@ module Helo
     # Attribute type mapping.
     def self.openapi_types
       {
-        'from': :'MailAddress',
+        'from': :'MailAddress1',
+        'reply_to': :'Array<MailAddress1>',
         'template': :'BroadcastContentTemplate',
         'attachments': :'Array<BroadcastContentAttachmentsInner>',
         'tags': :'Array<String>',
@@ -84,6 +88,12 @@ module Helo
 
       if attributes.key?(:'from')
         self.from = attributes[:'from']
+      end
+
+      if attributes.key?(:'reply_to')
+        if (value = attributes[:'reply_to']).is_a?(Array)
+          self.reply_to = value
+        end
       end
 
       if attributes.key?(:'template')
@@ -133,6 +143,12 @@ module Helo
     end
 
     # Attribute writer method
+    # @param [Object] reply_to Object to be assigned
+    def reply_to=(reply_to)
+      @reply_to = reply_to
+    end
+
+    # Attribute writer method
     # @param [Object] template Object to be assigned
     def template=(template)
       @template = template
@@ -168,6 +184,7 @@ module Helo
       return true if self.equal?(o)
       self.class == o.class &&
           from == o.from &&
+          reply_to == o.reply_to &&
           template == o.template &&
           attachments == o.attachments &&
           tags == o.tags &&
@@ -184,7 +201,7 @@ module Helo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [ from, template, attachments, tags, headers, metadata ].hash
+      [ from, reply_to, template, attachments, tags, headers, metadata ].hash
     end
 
     # Outputs specified attributes and their values as a hash

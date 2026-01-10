@@ -14,13 +14,16 @@ require "date"
 require "time"
 
 module Helo
-  class BroadcastFailuresResponse
-    attr_accessor :failures
+  class PaginatedResponseOfBroadcastSuppression
+    attr_accessor :total_count
+
+    attr_accessor :results
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        'failures': :'failures'
+        'total_count': :'totalCount',
+        'results': :'results'
       }
     end
 
@@ -37,7 +40,8 @@ module Helo
     # Attribute type mapping.
     def self.openapi_types
       {
-        'failures': :'Array<BroadcastFailure>'
+        'total_count': :'Integer',
+        'results': :'Array<String>'
       }
     end
 
@@ -50,24 +54,30 @@ module Helo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if !attributes.is_a?(Hash)
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::BroadcastFailuresResponse` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Helo::PaginatedResponseOfBroadcastSuppression` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       acceptable_attribute_map = self.class.acceptable_attribute_map
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if !acceptable_attribute_map.key?(k.to_sym)
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::BroadcastFailuresResponse`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Helo::PaginatedResponseOfBroadcastSuppression`. Please check the name to make sure it's valid. List of attributes: " + acceptable_attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'failures')
-        if (value = attributes[:'failures']).is_a?(Array)
-          self.failures = value
+      if attributes.key?(:'total_count')
+        self.total_count = attributes[:'total_count']
+      else
+        self.total_count = nil
+      end
+
+      if attributes.key?(:'results')
+        if (value = attributes[:'results']).is_a?(Array)
+          self.results = value
         end
       else
-        self.failures = nil
+        self.results = nil
       end
     end
 
@@ -76,8 +86,12 @@ module Helo
     def list_invalid_properties
       warn "[DEPRECATED] the `list_invalid_properties` method is obsolete"
       invalid_properties = Array.new
-      if @failures.nil?
-        invalid_properties.push('invalid value for "failures", failures cannot be nil.')
+      if @total_count.nil?
+        invalid_properties.push('invalid value for "total_count", total_count cannot be nil.')
+      end
+
+      if @results.nil?
+        invalid_properties.push('invalid value for "results", results cannot be nil.')
       end
 
       invalid_properties
@@ -87,14 +101,21 @@ module Helo
     # @return true if the model is valid
     def valid?
       warn "[DEPRECATED] the `valid?` method is obsolete"
-      return false if @failures.nil?
+      return false if @total_count.nil?
+      return false if @results.nil?
       true
     end
 
     # Attribute writer method
-    # @param [Object] failures Object to be assigned
-    def failures=(failures)
-      @failures = failures
+    # @param [Object] total_count Object to be assigned
+    def total_count=(total_count)
+      @total_count = total_count&.to_i
+    end
+
+    # Attribute writer method
+    # @param [Object] results Object to be assigned
+    def results=(results)
+      @results = results
     end
 
     # Checks equality by comparing each attribute.
@@ -102,7 +123,8 @@ module Helo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          failures == o.failures
+          total_count == o.total_count &&
+          results == o.results
     end
 
     # @see the `==` method
@@ -114,7 +136,7 @@ module Helo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [ failures ].hash
+      [ total_count, results ].hash
     end
 
     # Outputs specified attributes and their values as a hash

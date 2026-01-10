@@ -23,9 +23,10 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_broadcast_request = Helo::SendBroadcastRequest.new({ from: Helo::MailAddress.new({ email: "email_example" }), template: Helo::SendBroadcastRequestTemplate.new, messages: [ Helo::SendBroadcastRequestMessagesInner.new({ to: [ Helo::MailAddress.new({ email: "email_example" }) ] }) ] })
+send_broadcast_request = Helo::SendBroadcastRequest.new({ from: Helo::MailAddress1.new({ email: "email_example" }), template: Helo::SendBroadcastRequestTemplate.new, messages: [ Helo::SendBroadcastRequestMessagesInner.new({ to: [ Helo::MailAddress1.new({ email: "email_example" }) ] }) ] })
 opts = {
-  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d"
+  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d",
+  x_helo_idempotency_key: "x_helo_idempotency_key_example"
 }
 Helo::Sending.broadcast(send_broadcast_request, opts)
 ```
@@ -45,9 +46,10 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_message_request = Helo::SendMessageRequest.new({ from: Helo::MailAddress.new({ email: "email_example" }), to: [ Helo::MailAddress.new({ email: "email_example" }) ] })
+send_message_request = Helo::SendMessageRequest.new({ from: Helo::MailAddress1.new({ email: "email_example" }), to: [ Helo::MailAddress1.new({ email: "email_example" }) ] })
 opts = {
-  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d"
+  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d",
+  x_helo_idempotency_key: "x_helo_idempotency_key_example"
 }
 Helo::Sending.broadcast_message(send_message_request, opts)
 ```
@@ -67,9 +69,10 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_message_request = Helo::SendMessageRequest.new({ from: Helo::MailAddress.new({ email: "email_example" }), to: [ Helo::MailAddress.new({ email: "email_example" }) ] })
+send_message_request = Helo::SendMessageRequest.new({ from: Helo::MailAddress1.new({ email: "email_example" }), to: [ Helo::MailAddress1.new({ email: "email_example" }) ] })
 opts = {
-  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d"
+  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d",
+  x_helo_idempotency_key: "x_helo_idempotency_key_example"
 }
 Helo::Sending.transactional(send_message_request, opts)
 ```
@@ -89,9 +92,10 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_message_batch_request = Helo::SendMessageBatchRequest.new({ requests: [ Helo::SendMessageRequest.new({ from: Helo::MailAddress.new({ email: "email_example" }), to: [ Helo::MailAddress.new({ email: "email_example" }) ] }) ] })
+send_message_batch_request = Helo::SendMessageBatchRequest.new({ requests: [ Helo::SendMessageRequest.new({ from: Helo::MailAddress1.new({ email: "email_example" }), to: [ Helo::MailAddress1.new({ email: "email_example" }) ] }) ] })
 opts = {
-  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d"
+  x_helo_channel_id: "38400000-8cf0-11bd-b23e-10b96e4ef00d",
+  x_helo_idempotency_key: "x_helo_idempotency_key_example"
 }
 Helo::Sending.transactional_batch(send_message_batch_request, opts)
 ```

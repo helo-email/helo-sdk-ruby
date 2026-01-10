@@ -76,17 +76,17 @@ module Helo
     # Attribute type mapping.
     def self.openapi_types
       {
-        'from': :'MailAddress',
-        'to': :'Array<MailAddress>',
-        'cc': :'Array<MailAddress>',
-        'bcc': :'Array<MailAddress>',
-        'reply_to': :'Array<MailAddress>',
+        'from': :'MailAddress1',
+        'to': :'Array<MailAddress1>',
+        'cc': :'Array<MailAddress1>',
+        'bcc': :'Array<MailAddress1>',
+        'reply_to': :'Array<MailAddress1>',
         'subject': :'String',
         'html': :'String',
         'text': :'String',
         'template': :'SendBroadcastRequestTemplate',
         'tracking': :'SendBroadcastRequestTracking',
-        'attachments': :'Array<SendBroadcastRequestAttachmentsInner>',
+        'attachments': :'Array<Attachment>',
         'tags': :'Array<String>',
         'headers': :'Object',
         'metadata': :'Object'

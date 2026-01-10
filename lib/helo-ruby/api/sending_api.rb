@@ -23,7 +23,8 @@ module Helo
     # Sends a broadcast email to multiple recipients for marketing or announcement purposes.
     # @param send_broadcast_request [SendBroadcastRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [SendBroadcastResponse]
     def broadcast(send_broadcast_request, opts = {})
       data, _status_code, _headers = broadcast_with_http_info(send_broadcast_request, opts)
@@ -34,7 +35,8 @@ module Helo
     # Sends a broadcast email to multiple recipients for marketing or announcement purposes.
     # @param send_broadcast_request [SendBroadcastRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [Array<(SendBroadcastResponse, Integer, Hash)>] SendBroadcastResponse data, response status code and response headers
     def broadcast_with_http_info(send_broadcast_request, opts = {})
       if @api_client.config.debugging
@@ -44,6 +46,10 @@ module Helo
       if @api_client.config.client_side_validation && send_broadcast_request.nil?
         fail ArgumentError, "Missing the required parameter 'send_broadcast_request' when calling SendingAPI.broadcast"
       end
+      if @api_client.config.client_side_validation && !opts[:'x_helo_idempotency_key'].nil? && opts[:'x_helo_idempotency_key'].to_s.length > 256
+        fail ArgumentError, 'invalid value for "opts[:"x_helo_idempotency_key"]" when calling SendingAPI.broadcast, the character length must be smaller than or equal to 256.'
+      end
+
       # resource path
       local_var_path = "/send/broadcast"
 
@@ -59,7 +65,8 @@ module Helo
       if !content_type.nil?
           header_params["Content-Type"] = content_type
       end
-      header_params[:'x-helo-channel-id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Channel-Id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Idempotency-Key'] = opts[:'x_helo_idempotency_key'] if !opts[:'x_helo_idempotency_key'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -103,7 +110,8 @@ module Helo
     # Sends a single broadcast email message.
     # @param send_message_request [SendMessageRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [SendMessageAcceptedResponse]
     def broadcast_message(send_message_request, opts = {})
       data, _status_code, _headers = broadcast_message_with_http_info(send_message_request, opts)
@@ -114,7 +122,8 @@ module Helo
     # Sends a single broadcast email message.
     # @param send_message_request [SendMessageRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [Array<(SendMessageAcceptedResponse, Integer, Hash)>] SendMessageAcceptedResponse data, response status code and response headers
     def broadcast_message_with_http_info(send_message_request, opts = {})
       if @api_client.config.debugging
@@ -124,6 +133,10 @@ module Helo
       if @api_client.config.client_side_validation && send_message_request.nil?
         fail ArgumentError, "Missing the required parameter 'send_message_request' when calling SendingAPI.broadcast_message"
       end
+      if @api_client.config.client_side_validation && !opts[:'x_helo_idempotency_key'].nil? && opts[:'x_helo_idempotency_key'].to_s.length > 256
+        fail ArgumentError, 'invalid value for "opts[:"x_helo_idempotency_key"]" when calling SendingAPI.broadcast_message, the character length must be smaller than or equal to 256.'
+      end
+
       # resource path
       local_var_path = "/send/broadcast/message"
 
@@ -139,7 +152,8 @@ module Helo
       if !content_type.nil?
           header_params["Content-Type"] = content_type
       end
-      header_params[:'x-helo-channel-id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Channel-Id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Idempotency-Key'] = opts[:'x_helo_idempotency_key'] if !opts[:'x_helo_idempotency_key'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -183,7 +197,8 @@ module Helo
     # Sends a single transactional email such as receipts, confirmations, or notifications.
     # @param send_message_request [SendMessageRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [SendMessageAcceptedResponse]
     def transactional(send_message_request, opts = {})
       data, _status_code, _headers = transactional_with_http_info(send_message_request, opts)
@@ -194,7 +209,8 @@ module Helo
     # Sends a single transactional email such as receipts, confirmations, or notifications.
     # @param send_message_request [SendMessageRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [Array<(SendMessageAcceptedResponse, Integer, Hash)>] SendMessageAcceptedResponse data, response status code and response headers
     def transactional_with_http_info(send_message_request, opts = {})
       if @api_client.config.debugging
@@ -204,6 +220,10 @@ module Helo
       if @api_client.config.client_side_validation && send_message_request.nil?
         fail ArgumentError, "Missing the required parameter 'send_message_request' when calling SendingAPI.transactional"
       end
+      if @api_client.config.client_side_validation && !opts[:'x_helo_idempotency_key'].nil? && opts[:'x_helo_idempotency_key'].to_s.length > 256
+        fail ArgumentError, 'invalid value for "opts[:"x_helo_idempotency_key"]" when calling SendingAPI.transactional, the character length must be smaller than or equal to 256.'
+      end
+
       # resource path
       local_var_path = "/send/transactional"
 
@@ -219,7 +239,8 @@ module Helo
       if !content_type.nil?
           header_params["Content-Type"] = content_type
       end
-      header_params[:'x-helo-channel-id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Channel-Id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Idempotency-Key'] = opts[:'x_helo_idempotency_key'] if !opts[:'x_helo_idempotency_key'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -263,7 +284,8 @@ module Helo
     # Sends multiple transactional emails in a single API request for better performance.
     # @param send_message_batch_request [SendMessageBatchRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [SendMessageBatchResponse]
     def transactional_batch(send_message_batch_request, opts = {})
       data, _status_code, _headers = transactional_batch_with_http_info(send_message_batch_request, opts)
@@ -274,7 +296,8 @@ module Helo
     # Sends multiple transactional emails in a single API request for better performance.
     # @param send_message_batch_request [SendMessageBatchRequest]
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+    # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+    # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
     # @return [Array<(SendMessageBatchResponse, Integer, Hash)>] SendMessageBatchResponse data, response status code and response headers
     def transactional_batch_with_http_info(send_message_batch_request, opts = {})
       if @api_client.config.debugging
@@ -284,6 +307,10 @@ module Helo
       if @api_client.config.client_side_validation && send_message_batch_request.nil?
         fail ArgumentError, "Missing the required parameter 'send_message_batch_request' when calling SendingAPI.transactional_batch"
       end
+      if @api_client.config.client_side_validation && !opts[:'x_helo_idempotency_key'].nil? && opts[:'x_helo_idempotency_key'].to_s.length > 256
+        fail ArgumentError, 'invalid value for "opts[:"x_helo_idempotency_key"]" when calling SendingAPI.transactional_batch, the character length must be smaller than or equal to 256.'
+      end
+
       # resource path
       local_var_path = "/send/transactional/batch"
 
@@ -299,7 +326,8 @@ module Helo
       if !content_type.nil?
           header_params["Content-Type"] = content_type
       end
-      header_params[:'x-helo-channel-id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Channel-Id'] = opts[:'x_helo_channel_id'] if !opts[:'x_helo_channel_id'].nil?
+      header_params[:'X-Helo-Idempotency-Key'] = opts[:'x_helo_idempotency_key'] if !opts[:'x_helo_idempotency_key'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}

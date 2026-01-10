@@ -37,7 +37,8 @@ describe "SendingAPI" do
   # Sends a broadcast email to multiple recipients for marketing or announcement purposes.
   # @param send_broadcast_request
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+  # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+  # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
   # @return [SendBroadcastResponse]
   describe "broadcast test" do
     it "should work" do
@@ -50,7 +51,8 @@ describe "SendingAPI" do
   # Sends a single broadcast email message.
   # @param send_message_request
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+  # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+  # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
   # @return [SendMessageAcceptedResponse]
   describe "broadcast_message test" do
     it "should work" do
@@ -63,7 +65,8 @@ describe "SendingAPI" do
   # Sends a single transactional email such as receipts, confirmations, or notifications.
   # @param send_message_request
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+  # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+  # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
   # @return [SendMessageAcceptedResponse]
   describe "transactional test" do
     it "should work" do
@@ -76,7 +79,8 @@ describe "SendingAPI" do
   # Sends multiple transactional emails in a single API request for better performance.
   # @param send_message_batch_request
   # @param [Hash] opts the optional parameters
-  # @option opts [String] :x_helo_channel_id Used to specify a channel ID when using a global (i.e. not channel-scoped) API credential.
+  # @option opts [String] :x_helo_channel_id Used to specify a channel ID for sending when using an account-level API credential.
+  # @option opts [String] :x_helo_idempotency_key A unique identifier used to prevent duplicate messages being sent when retrying failed requests.
   # @return [SendMessageBatchResponse]
   describe "transactional_batch test" do
     it "should work" do
