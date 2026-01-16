@@ -11,6 +11,7 @@ module Helo::Core
     included do
       include ActiveModel::AttributeAssignment
       include ActiveModel::Attributes
+      include ActiveModel::Serializers::JSON
 
       class_attribute :_api_attributes, default: {}
 
