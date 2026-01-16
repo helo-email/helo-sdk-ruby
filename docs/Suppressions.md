@@ -23,7 +23,7 @@ Helo.configure do |config|
 end
 
 opts = {
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   email: "example",
   limit: 10,
   offset: 10
@@ -48,7 +48,7 @@ Helo.configure do |config|
 end
 
 create_suppressions_request = Helo::CreateSuppressionsRequest.new(
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   mail_type: Helo::MailType::TRANSACTIONAL,
   emails: ["example1", "example2"]
 )
@@ -72,7 +72,7 @@ Helo.configure do |config|
 end
 
 remove_suppressions_request = Helo::RemoveSuppressionsRequest.new(
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   mail_type: Helo::MailType::TRANSACTIONAL,
   emails: ["example1", "example2"]
 )

@@ -28,7 +28,7 @@ class ActivityTest < Minitest::Test
   end
 
   def test_retrieve_message
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:get, "http://localhost:8002/activity/messages/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

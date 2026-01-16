@@ -16,7 +16,7 @@ class BroadcastsTest < Minitest::Test
   end
 
   def test_retrieve
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:get, "http://localhost:8002/broadcasts/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -28,7 +28,7 @@ class BroadcastsTest < Minitest::Test
   end
 
   def test_list_failures
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:get, "http://localhost:8002/broadcasts/#{id}/failures")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -40,7 +40,7 @@ class BroadcastsTest < Minitest::Test
   end
 
   def test_list_suppressions
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:get, "http://localhost:8002/broadcasts/#{id}/suppressions")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

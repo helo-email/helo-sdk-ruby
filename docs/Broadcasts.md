@@ -24,7 +24,7 @@ Helo.configure do |config|
 end
 
 opts = {
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   subject: "example",
   limit: 10,
   offset: 10
@@ -48,7 +48,7 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 Helo::Broadcasts.retrieve(id)
 ```
 
@@ -68,7 +68,7 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 Helo::Broadcasts.list_failures(id)
 ```
 
@@ -88,7 +88,7 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 Helo::Broadcasts.list_suppressions(id)
 ```
 

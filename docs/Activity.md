@@ -23,8 +23,8 @@ Helo.configure do |config|
 end
 
 opts = {
-  channel_id: "00000000-0000-0000-0000-000000000000",
-  message_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
+  message_id: "550e8400-e29b-41d4-a716-446655440000",
   after: 10,
   start_date: "2024-01-01T00:00:00Z",
   end_date: "2024-01-01T00:00:00Z",
@@ -50,7 +50,7 @@ Helo.configure do |config|
 end
 
 opts = {
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   after: 10,
   start_date: "2024-01-01T00:00:00Z",
   end_date: "2024-01-01T00:00:00Z",
@@ -79,7 +79,7 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 Helo::Activity.retrieve_message(id)
 ```
 

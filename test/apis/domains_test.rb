@@ -28,7 +28,7 @@ class DomainsTest < Minitest::Test
   end
 
   def test_retrieve
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:get, "http://localhost:8002/domains/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -40,8 +40,8 @@ class DomainsTest < Minitest::Test
   end
 
   def test_update
-    id = "00000000-0000-0000-0000-000000000000"
-    request_data = { channel_ids: ["00000000-0000-0000-0000-000000000000", "11111111-1111-1111-1111-111111111111"] }
+    id = "550e8400-e29b-41d4-a716-446655440000"
+    request_data = { channel_ids: ["550e8400-e29b-41d4-a716-446655440000", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"] }
 
     stub_request(:patch, "http://localhost:8002/domains/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -53,7 +53,7 @@ class DomainsTest < Minitest::Test
   end
 
   def test_delete
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:delete, "http://localhost:8002/domains/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -65,7 +65,7 @@ class DomainsTest < Minitest::Test
   end
 
   def test_verify
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:post, "http://localhost:8002/domains/#{id}/verify")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -77,7 +77,7 @@ class DomainsTest < Minitest::Test
   end
 
   def test_rotate_key
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:post, "http://localhost:8002/domains/#{id}/rotate-key")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

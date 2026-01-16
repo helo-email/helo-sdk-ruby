@@ -28,7 +28,7 @@ class ChannelsTest < Minitest::Test
   end
 
   def test_retrieve
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:get, "http://localhost:8002/channels/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -40,7 +40,7 @@ class ChannelsTest < Minitest::Test
   end
 
   def test_update
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
     request_data = { name: "test-name", delivery_type: Helo::DeliveryType::LIVE, track_links: true, track_opens: true }
 
     stub_request(:patch, "http://localhost:8002/channels/#{id}")
@@ -53,7 +53,7 @@ class ChannelsTest < Minitest::Test
   end
 
   def test_delete
-    id = "00000000-0000-0000-0000-000000000000"
+    id = "550e8400-e29b-41d4-a716-446655440000"
 
     stub_request(:delete, "http://localhost:8002/channels/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

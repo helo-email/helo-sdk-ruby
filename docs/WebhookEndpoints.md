@@ -28,7 +28,7 @@ end
 opts = {
   limit: 10,
   offset: 10,
-  channel_ids: ["00000000-0000-0000-0000-000000000000", "11111111-1111-1111-1111-111111111111"]
+  channel_ids: ["550e8400-e29b-41d4-a716-446655440000", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"]
 }
 Helo::WebhookEndpoints.list(opts)
 ```
@@ -72,7 +72,7 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 Helo::WebhookEndpoints.retrieve(id)
 ```
 
@@ -92,11 +92,11 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 update_webhook_endpoint_request = Helo::UpdateWebhookEndpointRequest.new(
   url: "test-url",
   events: [],
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   additional_headers: [],
   enabled: true
 )
@@ -119,7 +119,7 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 Helo::WebhookEndpoints.delete(id)
 ```
 
@@ -139,7 +139,7 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-id = "00000000-0000-0000-0000-000000000000"
+id = "550e8400-e29b-41d4-a716-446655440000"
 Helo::WebhookEndpoints.regenerate_signing_key(id)
 ```
 

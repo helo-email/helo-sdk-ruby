@@ -23,7 +23,7 @@ Helo.configure do |config|
 end
 
 opts = {
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
   tag: "example"
@@ -48,7 +48,7 @@ Helo.configure do |config|
 end
 
 opts = {
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
   tag: "example",
@@ -74,7 +74,7 @@ Helo.configure do |config|
 end
 
 opts = {
-  channel_id: "00000000-0000-0000-0000-000000000000",
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
   tag: "example"

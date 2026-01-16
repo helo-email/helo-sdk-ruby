@@ -16,7 +16,7 @@ class SuppressionsTest < Minitest::Test
   end
 
   def test_create
-    request_data = { channel_id: "00000000-0000-0000-0000-000000000000", mail_type: Helo::MailType::TRANSACTIONAL, emails: ["example1", "example2"] }
+    request_data = { channel_id: "550e8400-e29b-41d4-a716-446655440000", mail_type: Helo::MailType::TRANSACTIONAL, emails: ["example1", "example2"] }
 
     stub_request(:post, "http://localhost:8002/suppressions")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -28,7 +28,7 @@ class SuppressionsTest < Minitest::Test
   end
 
   def test_remove
-    request_data = { channel_id: "00000000-0000-0000-0000-000000000000", mail_type: Helo::MailType::TRANSACTIONAL, emails: ["example1", "example2"] }
+    request_data = { channel_id: "550e8400-e29b-41d4-a716-446655440000", mail_type: Helo::MailType::TRANSACTIONAL, emails: ["example1", "example2"] }
 
     stub_request(:post, "http://localhost:8002/suppressions/remove")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
