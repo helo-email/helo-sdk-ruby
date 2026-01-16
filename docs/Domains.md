@@ -51,7 +51,9 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-create_domain_request = Helo::CreateDomainRequest.new(name: "test-name")
+create_domain_request = Helo::CreateDomainRequest.new(
+  name: "test-name"
+)
 Helo::Domains.create(create_domain_request)
 ```
 
@@ -92,7 +94,9 @@ Helo.configure do |config|
 end
 
 id = "00000000-0000-0000-0000-000000000000"
-update_domain_request = Helo::UpdateDomainRequest.new(channel_ids: ["00000000-0000-0000-0000-000000000000", "11111111-1111-1111-1111-111111111111"])
+update_domain_request = Helo::UpdateDomainRequest.new(
+  channel_ids: ["00000000-0000-0000-0000-000000000000", "11111111-1111-1111-1111-111111111111"]
+)
 Helo::Domains.update(id, update_domain_request)
 ```
 

@@ -49,7 +49,10 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-create_webhook_endpoint_request = Helo::CreateWebhookEndpointRequest.new(url: "test-url", events: [])
+create_webhook_endpoint_request = Helo::CreateWebhookEndpointRequest.new(
+  url: "test-url",
+  events: []
+)
 Helo::WebhookEndpoints.create(create_webhook_endpoint_request)
 ```
 
@@ -90,7 +93,13 @@ Helo.configure do |config|
 end
 
 id = "00000000-0000-0000-0000-000000000000"
-update_webhook_endpoint_request = Helo::UpdateWebhookEndpointRequest.new(url: "test-url", events: [], channel_id: "00000000-0000-0000-0000-000000000000", additional_headers: [], enabled: true)
+update_webhook_endpoint_request = Helo::UpdateWebhookEndpointRequest.new(
+  url: "test-url",
+  events: [],
+  channel_id: "00000000-0000-0000-0000-000000000000",
+  additional_headers: [],
+  enabled: true
+)
 Helo::WebhookEndpoints.update(id, update_webhook_endpoint_request)
 ```
 

@@ -50,7 +50,10 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-create_channel_request = Helo::CreateChannelRequest.new(name: "test-name", delivery_type: Helo::DeliveryType::LIVE)
+create_channel_request = Helo::CreateChannelRequest.new(
+  name: "test-name",
+  delivery_type: Helo::DeliveryType::LIVE
+)
 Helo::Channels.create(create_channel_request)
 ```
 
@@ -91,7 +94,12 @@ Helo.configure do |config|
 end
 
 id = "00000000-0000-0000-0000-000000000000"
-update_channel_request = Helo::UpdateChannelRequest.new(name: "test-name", delivery_type: Helo::DeliveryType::LIVE, track_links: true, track_opens: true)
+update_channel_request = Helo::UpdateChannelRequest.new(
+  name: "test-name",
+  delivery_type: Helo::DeliveryType::LIVE,
+  track_links: true,
+  track_opens: true
+)
 Helo::Channels.update(id, update_channel_request)
 ```
 

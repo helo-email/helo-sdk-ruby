@@ -47,7 +47,11 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-create_suppressions_request = Helo::CreateSuppressionsRequest.new(channel_id: "00000000-0000-0000-0000-000000000000", mail_type: Helo::MailType::TRANSACTIONAL, emails: ["example1", "example2"])
+create_suppressions_request = Helo::CreateSuppressionsRequest.new(
+  channel_id: "00000000-0000-0000-0000-000000000000",
+  mail_type: Helo::MailType::TRANSACTIONAL,
+  emails: ["example1", "example2"]
+)
 Helo::Suppressions.create(create_suppressions_request)
 ```
 
@@ -67,7 +71,11 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-remove_suppressions_request = Helo::RemoveSuppressionsRequest.new(channel_id: "00000000-0000-0000-0000-000000000000", mail_type: Helo::MailType::TRANSACTIONAL, emails: ["example1", "example2"])
+remove_suppressions_request = Helo::RemoveSuppressionsRequest.new(
+  channel_id: "00000000-0000-0000-0000-000000000000",
+  mail_type: Helo::MailType::TRANSACTIONAL,
+  emails: ["example1", "example2"]
+)
 Helo::Suppressions.remove(remove_suppressions_request)
 ```
 

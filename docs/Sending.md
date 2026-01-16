@@ -23,7 +23,9 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_message_request = Helo::SendMessageRequest.new(to: [])
+send_message_request = Helo::SendMessageRequest.new(
+  to: []
+)
 Helo::Sending.transactional(send_message_request)
 ```
 
@@ -43,7 +45,9 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_message_batch_request = Helo::SendMessageBatchRequest.new(requests: [])
+send_message_batch_request = Helo::SendMessageBatchRequest.new(
+  requests: []
+)
 Helo::Sending.transactional_batch(send_message_batch_request)
 ```
 
@@ -63,7 +67,9 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_broadcast_request = Helo::SendBroadcastRequest.new(messages: [])
+send_broadcast_request = Helo::SendBroadcastRequest.new(
+  messages: []
+)
 Helo::Sending.broadcast(send_broadcast_request)
 ```
 
@@ -83,7 +89,9 @@ Helo.configure do |config|
   config.access_token = "YOUR_BEARER_TOKEN"
 end
 
-send_message_request = Helo::SendMessageRequest.new(to: [])
+send_message_request = Helo::SendMessageRequest.new(
+  to: []
+)
 Helo::Sending.broadcast_message(send_message_request)
 ```
 
