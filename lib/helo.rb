@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Define module hierarchy before loading core
+module Helo; end
+
 # Core framework
 require_relative "helo/core/model_type"
 require_relative "helo/core/array_type"
