@@ -67,7 +67,9 @@ module Helo::Core
       end
 
       def deep_to_h(value)
-        if value.is_a?(Array)
+        if value.nil?
+          nil
+        elsif value.is_a?(Array)
           value.map { |item| deep_to_h(item) }
         elsif value.respond_to?(:to_h)
           value.to_h
