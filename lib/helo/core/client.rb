@@ -40,6 +40,8 @@ module Helo::Core
       end
 
       handle_response(response)
+    rescue Faraday::ConnectionFailed => e
+      handle_connection_error(e)
     end
 
     private
@@ -56,13 +58,21 @@ module Helo::Core
       when 200..299
         response
       else
-        handle_error(response)
+        handle_error_response(response)
       end
     end
 
-    # Override this method in subclasses to raise custom errors
-    def handle_error(response)
-      raise StandardError, "Request failed with status #{response.status}: #{response.body}"
+    def handle_error_response(response)
+      raise APIError.new(
+        "Request failed",
+        code: response.status,
+        response_body: response.body,
+        response_headers: response.headers
+      )
+    end
+
+    def handle_connection_error(exception)
+      raise APIError.new("Connection failed: #{exception.message}")
     end
   end
 end

@@ -7,6 +7,7 @@ module Helo; end
 require_relative "helo/core/model_type"
 require_relative "helo/core/array_type"
 require_relative "helo/core/model"
+require_relative "helo/core/api_error"
 require_relative "helo/core/configuration"
 require_relative "helo/core/client"
 require_relative "helo/core/api"

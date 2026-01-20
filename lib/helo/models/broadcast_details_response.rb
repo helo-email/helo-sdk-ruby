@@ -10,6 +10,8 @@ module Helo
     api_attribute :subject, :string, key: "subject"
     api_attribute :completion, :string, key: "completion"
     api_attribute :messages, :integer, key: "messages"
+    api_attribute :failed, :integer, key: "failed"
+    api_attribute :suppressed, :integer, key: "suppressed"
     api_attribute :content, Helo::Core::ModelType.new("Helo::BroadcastContent"), key: "content"
     api_attribute :tracking, Helo::Core::ModelType.new("Helo::BroadcastTracking"), key: "tracking"
     api_attribute :statistics, Helo::Core::ModelType.new("Helo::BroadcastStatistics"), key: "statistics"

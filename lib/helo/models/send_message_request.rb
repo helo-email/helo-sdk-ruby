@@ -14,7 +14,7 @@ module Helo
     api_attribute :text, :string, key: "text"
     api_attribute :template, Helo::Core::ModelType.new("Helo::SendMessageRequestTemplate"), key: "template"
     api_attribute :tracking, Helo::Core::ModelType.new("Helo::SendMessageRequestTracking"), key: "tracking"
-    api_attribute :attachments, Helo::Core::ArrayType.new("Helo::SendMessageRequestAttachment"), key: "attachments"
+    api_attribute :attachments, Helo::Core::ArrayType.new("Helo::Attachment"), key: "attachments"
     api_attribute :tags, key: "tags"
     api_attribute :headers, key: "headers"
     api_attribute :metadata, key: "metadata"

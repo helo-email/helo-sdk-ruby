@@ -12,7 +12,7 @@ class BroadcastsTest < Minitest::Test
 
     result = Helo::Broadcasts.list(request_data)
 
-    assert_instance_of Helo::PaginatedResponseOfBroadcastResponse, result
+    assert_instance_of Helo::PaginatedResponseOfBroadcast, result
   end
 
   def test_retrieve
@@ -36,7 +36,7 @@ class BroadcastsTest < Minitest::Test
 
     result = Helo::Broadcasts.list_failures(id)
 
-    assert_instance_of Helo::BroadcastFailuresResponse, result
+    assert_instance_of Helo::PaginatedResponseOfBroadcastFailure, result
   end
 
   def test_list_suppressions
@@ -48,6 +48,6 @@ class BroadcastsTest < Minitest::Test
 
     result = Helo::Broadcasts.list_suppressions(id)
 
-    assert_instance_of Helo::BroadcastSuppressionsResponse, result
+    assert_instance_of Helo::PaginatedResponseOfBroadcastSuppression, result
   end
 end

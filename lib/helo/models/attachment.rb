@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class SendMessageRequestAttachment
+  class Attachment
     include Helo::Core::Model
 
     api_attribute :content, :string, key: "content"

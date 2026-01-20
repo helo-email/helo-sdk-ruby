@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class BroadcastFailure
+  class BroadcastFailureResponse
     include Helo::Core::Model
 
     api_attribute :recipients, Helo::Core::ModelType.new("Helo::RecipientHeaders"), key: "recipients"
