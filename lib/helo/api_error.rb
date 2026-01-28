@@ -17,7 +17,7 @@ module Helo
     private
 
     def json_response
-      @_json_response ||= response_body.deep_symbolize_keys
+      @_json_response ||= response_body&.deep_symbolize_keys || {}
     end
   end
 end
