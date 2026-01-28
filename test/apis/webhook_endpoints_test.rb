@@ -16,7 +16,7 @@ class WebhookEndpointsTest < Minitest::Test
   end
 
   def test_create
-    request_data = { url: "test-url", events: [] }
+    request_data = { url: "test-url", events: [], channel_id: "550e8400-e29b-41d4-a716-446655440000", additional_headers: [], enabled: true }
 
     stub_request(:post, "http://localhost:8002/webhook-endpoints")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

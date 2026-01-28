@@ -52,7 +52,9 @@ end
 
 create_channel_request = Helo::CreateChannelRequest.new(
   name: "test-name",
-  delivery_type: Helo::DeliveryType::LIVE
+  delivery_type: Helo::DeliveryType::LIVE,
+  track_links: true,
+  track_opens: true
 )
 Helo::Channels.create(create_channel_request)
 ```

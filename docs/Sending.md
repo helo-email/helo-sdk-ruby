@@ -24,7 +24,20 @@ Helo.configure do |config|
 end
 
 send_message_request = Helo::SendMessageRequest.new(
-  to: []
+  from: Helo::MailAddress1.new(email: "test-email", name: "test-name"),
+  to: [],
+  cc: [],
+  bcc: [],
+  reply_to: [],
+  subject: "test-subject",
+  html: "test-html",
+  text: "test-text",
+  template: {},
+  tracking: {},
+  attachments: [],
+  tags: ["example1", "example2"],
+  headers: {},
+  metadata: {}
 )
 Helo::Sending.transactional(send_message_request)
 ```
@@ -68,6 +81,14 @@ Helo.configure do |config|
 end
 
 send_broadcast_request = Helo::SendBroadcastRequest.new(
+  from: Helo::MailAddress1.new(email: "test-email", name: "test-name"),
+  reply_to: [],
+  template: {},
+  tracking: {},
+  attachments: [],
+  tags: ["example1", "example2"],
+  headers: {},
+  metadata: {},
   messages: []
 )
 Helo::Sending.broadcast(send_broadcast_request)
@@ -90,7 +111,20 @@ Helo.configure do |config|
 end
 
 send_message_request = Helo::SendMessageRequest.new(
-  to: []
+  from: Helo::MailAddress1.new(email: "test-email", name: "test-name"),
+  to: [],
+  cc: [],
+  bcc: [],
+  reply_to: [],
+  subject: "test-subject",
+  html: "test-html",
+  text: "test-text",
+  template: {},
+  tracking: {},
+  attachments: [],
+  tags: ["example1", "example2"],
+  headers: {},
+  metadata: {}
 )
 Helo::Sending.broadcast_message(send_message_request)
 ```

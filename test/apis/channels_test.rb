@@ -16,7 +16,7 @@ class ChannelsTest < Minitest::Test
   end
 
   def test_create
-    request_data = { name: "test-name", delivery_type: Helo::DeliveryType::LIVE }
+    request_data = { name: "test-name", delivery_type: Helo::DeliveryType::LIVE, track_links: true, track_opens: true }
 
     stub_request(:post, "http://localhost:8002/channels")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

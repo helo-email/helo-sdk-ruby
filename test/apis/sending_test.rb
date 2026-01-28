@@ -4,7 +4,7 @@ require "test_helper"
 
 class SendingTest < Minitest::Test
   def test_transactional
-    request_data = { to: [] }
+    request_data = { from: Helo::MailAddress1.new(email: "test-email", name: "test-name"), to: [], cc: [], bcc: [], reply_to: [], subject: "test-subject", html: "test-html", text: "test-text", template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {} }
 
     stub_request(:post, "http://localhost:8002/send/transactional")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -28,7 +28,7 @@ class SendingTest < Minitest::Test
   end
 
   def test_broadcast
-    request_data = { messages: [] }
+    request_data = { from: Helo::MailAddress1.new(email: "test-email", name: "test-name"), reply_to: [], template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {}, messages: [] }
 
     stub_request(:post, "http://localhost:8002/send/broadcast")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -40,7 +40,7 @@ class SendingTest < Minitest::Test
   end
 
   def test_broadcast_message
-    request_data = { to: [] }
+    request_data = { from: Helo::MailAddress1.new(email: "test-email", name: "test-name"), to: [], cc: [], bcc: [], reply_to: [], subject: "test-subject", html: "test-html", text: "test-text", template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {} }
 
     stub_request(:post, "http://localhost:8002/send/broadcast/message")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

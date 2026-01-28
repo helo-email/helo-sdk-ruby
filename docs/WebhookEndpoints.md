@@ -51,7 +51,10 @@ end
 
 create_webhook_endpoint_request = Helo::CreateWebhookEndpointRequest.new(
   url: "test-url",
-  events: []
+  events: [],
+  channel_id: "550e8400-e29b-41d4-a716-446655440000",
+  additional_headers: [],
+  enabled: true
 )
 Helo::WebhookEndpoints.create(create_webhook_endpoint_request)
 ```
