@@ -9,7 +9,7 @@
 
 ## list_events
 
-> <EventsResponse> list_events(opts)
+> <PaginatedEventsResponse> list_events(opts)
 
 List activity events
 
@@ -28,7 +28,10 @@ opts = {
   after: 10,
   start_date: "2024-01-01T00:00:00Z",
   end_date: "2024-01-01T00:00:00Z",
-  limit: 10
+  limit: 10,
+  recipient: "example",
+  subject: "example",
+  tag: "example"
 }
 Helo::Activity.list_events(opts)
 ```

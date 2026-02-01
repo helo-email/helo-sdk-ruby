@@ -12,7 +12,7 @@ class ActivityTest < Minitest::Test
 
     result = Helo::Activity.list_events(request_data)
 
-    assert_instance_of Helo::EventsResponse, result
+    assert_instance_of Helo::PaginatedEventsResponse, result
   end
 
   def test_list_messages

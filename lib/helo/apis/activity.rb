@@ -5,7 +5,7 @@ module Helo
     def list_events(request_data = {})
       request = ActivityListEventsRequest.new(request_data)
       response = @client.request(:get, "/activity/events", params: request.to_params)
-      EventsResponse.from_hash(response.body)
+      PaginatedEventsResponse.from_hash(response.body)
     end
 
     def list_messages(request_data = {})

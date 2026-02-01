@@ -11,5 +11,9 @@ module Helo
     api_attribute :start_date, :datetime, key: "startDate"
     api_attribute :end_date, :datetime, key: "endDate"
     api_attribute :limit, :integer, key: "limit"
+    api_attribute :recipient, :string, key: "recipient"
+    api_attribute :subject, :string, key: "subject"
+    api_attribute :tag, :string, key: "tag"
+    api_attribute :event_type, :string, key: "eventType"
   end
 end

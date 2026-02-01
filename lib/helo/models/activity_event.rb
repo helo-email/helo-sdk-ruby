@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class EventsResponseResult
+  class ActivityEvent
     include Helo::Core::Model
 
     api_attribute :message_id, :string, key: "messageId"
@@ -14,5 +14,6 @@ module Helo
     api_attribute :recipients, key: "recipients"
     api_attribute :tags, key: "tags"
     api_attribute :metadata, key: "metadata"
+    api_attribute :details, key: "details"
   end
 end
