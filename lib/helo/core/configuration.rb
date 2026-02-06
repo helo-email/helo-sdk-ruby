@@ -5,9 +5,9 @@ module Helo::Core
     attr_accessor :base_url, :access_token
     attr_reader :faraday_configuration_block
 
-    def initialize
-      @base_url = "https://api.example.com"
-      @access_token = nil
+    def initialize(base_url: "https://api.example.com", access_token: nil)
+      @base_url = base_url
+      @access_token = access_token
       @faraday_configuration_block = nil
     end
 
