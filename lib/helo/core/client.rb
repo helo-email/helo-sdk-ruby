@@ -40,7 +40,7 @@ module Helo::Core
       end
 
       handle_response(response)
-    rescue Faraday::ConnectionFailed => e
+    rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
       handle_connection_error(e)
     end
 
