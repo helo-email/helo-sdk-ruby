@@ -13,6 +13,7 @@ module Helo::Core
         f.request :json
         f.response :json
         f.adapter Faraday.default_adapter
+        f.options.params_encoder = Faraday::FlatParamsEncoder
 
         # Allow custom Faraday configuration
         configuration.faraday_configuration_block&.call(f)
