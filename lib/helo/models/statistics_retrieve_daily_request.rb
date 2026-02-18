@@ -6,8 +6,8 @@ module Helo
     include Helo::Core::Model
 
     api_attribute :channel_id, :string, key: "channelId"
-    api_attribute :from, :datetime, key: "from"
-    api_attribute :to, :datetime, key: "to"
+    api_attribute :from, :date, key: "from"
+    api_attribute :to, :date, key: "to"
     api_attribute :tag, :string, key: "tag"
     api_attribute :timezone, :string, key: "timezone"
   end
