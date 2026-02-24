@@ -32,7 +32,7 @@ opts = {
   recipient: "example",
   subject: "example",
   tags: ["example1", "example2"],
-  event_types: []
+  event_types: ["accepted", "processed"]
 }
 Helo::Activity.list_events(opts)
 ```

@@ -51,7 +51,7 @@ end
 
 create_webhook_endpoint_request = Helo::CreateWebhookEndpointRequest.new(
   url: "test-url",
-  events: [],
+  events: ["accepted", "processed"],
   channel_id: "550e8400-e29b-41d4-a716-446655440000",
   additional_headers: [],
   enabled: true
@@ -98,7 +98,7 @@ end
 id = "550e8400-e29b-41d4-a716-446655440000"
 update_webhook_endpoint_request = Helo::UpdateWebhookEndpointRequest.new(
   url: "test-url",
-  events: [],
+  events: ["accepted", "processed"],
   channel_id: "550e8400-e29b-41d4-a716-446655440000",
   additional_headers: [],
   enabled: true
