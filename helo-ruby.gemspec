@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "lib/helo/version"
-
 Gem::Specification.new do |spec|
   spec.name = "helo-ruby"
-  spec.version = Helo::VERSION
+  spec.version = "1"
   spec.authors = ["Generated"]
   spec.email = ["generated@example.com"]
 
