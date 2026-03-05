@@ -9,7 +9,7 @@
 
 ## retrieve_hourly
 
-> <StatisticsResponse> retrieve_hourly(opts)
+> <StatisticsHourlyResponse> retrieve_hourly(opts)
 
 Retrieve hourly statistics
 
@@ -34,7 +34,7 @@ Helo::Statistics.retrieve_hourly(opts)
 
 ## retrieve_daily
 
-> <StatisticsResponse> retrieve_daily(opts)
+> <StatisticsDailyResponse> retrieve_daily(opts)
 
 Retrieve daily statistics
 

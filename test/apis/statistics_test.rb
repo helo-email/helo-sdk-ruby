@@ -12,7 +12,7 @@ class StatisticsTest < Minitest::Test
 
     result = Helo::Statistics.retrieve_hourly(request_data)
 
-    assert_instance_of Helo::StatisticsResponse, result
+    assert_instance_of Helo::StatisticsHourlyResponse, result
   end
 
   def test_retrieve_daily
@@ -24,7 +24,7 @@ class StatisticsTest < Minitest::Test
 
     result = Helo::Statistics.retrieve_daily(request_data)
 
-    assert_instance_of Helo::StatisticsResponse, result
+    assert_instance_of Helo::StatisticsDailyResponse, result
   end
 
   def test_retrieve_totals

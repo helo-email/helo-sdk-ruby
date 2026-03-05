@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class StatisticsResponseResult
+  class StatisticsHourlyResponseResult
     include Helo::Core::Model
 
     api_attribute :timestamp, :datetime, key: "timestamp"

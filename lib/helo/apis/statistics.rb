@@ -5,13 +5,13 @@ module Helo
     def retrieve_hourly(request_data = {})
       request = StatisticsRetrieveHourlyRequest.new(request_data)
       response = @client.request(:get, "/activity/statistics/hourly", params: request.to_params)
-      StatisticsResponse.from_hash(response.body)
+      StatisticsHourlyResponse.from_hash(response.body)
     end
 
     def retrieve_daily(request_data = {})
       request = StatisticsRetrieveDailyRequest.new(request_data)
       response = @client.request(:get, "/activity/statistics/daily", params: request.to_params)
-      StatisticsResponse.from_hash(response.body)
+      StatisticsDailyResponse.from_hash(response.body)
     end
 
     def retrieve_totals(request_data = {})
