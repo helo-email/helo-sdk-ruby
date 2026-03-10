@@ -13,7 +13,7 @@
 
 List activity events
 
-Retrieves activity events for messages, including delivery status, opens, clicks, bounces, and complaints.
+Retrieves activity events for messages, including delivery status, opens, clicks, bounces, unsubscribes and complaints.
 
 ### Example
 
