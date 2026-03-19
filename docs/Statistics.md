@@ -52,7 +52,7 @@ opts = {
   from: "2024-01-01",
   to: "2024-01-01",
   tag: "example",
-  timezone: "example"
+  timezone: "America/New_York"
 }
 Helo::Statistics.retrieve_daily(opts)
 ```
