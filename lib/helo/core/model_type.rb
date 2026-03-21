@@ -18,6 +18,8 @@ module Helo::Core
         value
       when Hash
         model_class.from_hash(value)
+      else
+        raise ArgumentError, "Expected #{@model_class_name}, got #{value.class}"
       end
     end
 
