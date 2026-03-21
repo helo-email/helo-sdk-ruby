@@ -11,7 +11,7 @@
 
 ## list
 
-> <PaginationResultOfChannelResponse> list(opts)
+> <PaginationResultOfChannelBasicResponse> list(opts)
 
 List all channels
 
@@ -37,7 +37,7 @@ Helo::Channels.list(opts)
 
 ## create
 
-> <ChannelResponse> create(create_channel_request)
+> <ChannelDetailsResponse> create(create_channel_request)
 
 Create a channel
 
@@ -62,7 +62,7 @@ Helo::Channels.create(create_channel_request)
 
 ## retrieve
 
-> <ChannelResponse> retrieve(id)
+> <ChannelDetailsResponse> retrieve(id)
 
 Retrieve a channel
 
@@ -82,7 +82,7 @@ Helo::Channels.retrieve(id)
 
 ## update
 
-> <ChannelResponse> update(id, update_channel_request)
+> <ChannelDetailsResponse> update(id, update_channel_request)
 
 Update a channel
 

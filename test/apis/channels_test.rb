@@ -12,7 +12,7 @@ class ChannelsTest < Minitest::Test
 
     result = Helo::Channels.list(request_data)
 
-    assert_instance_of Helo::PaginationResultOfChannelResponse, result
+    assert_instance_of Helo::PaginationResultOfChannelBasicResponse, result
   end
 
   def test_create
@@ -24,7 +24,7 @@ class ChannelsTest < Minitest::Test
 
     result = Helo::Channels.create(request_data)
 
-    assert_instance_of Helo::ChannelResponse, result
+    assert_instance_of Helo::ChannelDetailsResponse, result
   end
 
   def test_retrieve
@@ -36,7 +36,7 @@ class ChannelsTest < Minitest::Test
 
     result = Helo::Channels.retrieve(id)
 
-    assert_instance_of Helo::ChannelResponse, result
+    assert_instance_of Helo::ChannelDetailsResponse, result
   end
 
   def test_update
@@ -49,7 +49,7 @@ class ChannelsTest < Minitest::Test
 
     result = Helo::Channels.update(id, request_data)
 
-    assert_instance_of Helo::ChannelResponse, result
+    assert_instance_of Helo::ChannelDetailsResponse, result
   end
 
   def test_delete
