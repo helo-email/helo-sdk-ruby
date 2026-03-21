@@ -53,8 +53,7 @@ end
 create_channel_request = Helo::CreateChannelRequest.new(
   name: "test-name",
   delivery_type: Helo::DeliveryType::LIVE,
-  track_links: true,
-  track_opens: true
+  tracking: Helo::CreateChannelTracking.new(links: true, opens: true)
 )
 Helo::Channels.create(create_channel_request)
 ```
@@ -99,8 +98,7 @@ id = "550e8400-e29b-41d4-a716-446655440000"
 update_channel_request = Helo::UpdateChannelRequest.new(
   name: "test-name",
   delivery_type: Helo::DeliveryType::LIVE,
-  track_links: true,
-  track_opens: true
+  tracking: Helo::UpdateChannelTracking.new(links: true, opens: true)
 )
 Helo::Channels.update(id, update_channel_request)
 ```

@@ -16,7 +16,7 @@ class ChannelsTest < Minitest::Test
   end
 
   def test_create
-    request_data = { name: "test-name", delivery_type: Helo::DeliveryType::LIVE, track_links: true, track_opens: true }
+    request_data = { name: "test-name", delivery_type: Helo::DeliveryType::LIVE, tracking: Helo::CreateChannelTracking.new(links: true, opens: true) }
 
     stub_request(:post, "http://localhost:8002/channels")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -41,7 +41,7 @@ class ChannelsTest < Minitest::Test
 
   def test_update
     id = "550e8400-e29b-41d4-a716-446655440000"
-    request_data = { name: "test-name", delivery_type: Helo::DeliveryType::LIVE, track_links: true, track_opens: true }
+    request_data = { name: "test-name", delivery_type: Helo::DeliveryType::LIVE, tracking: Helo::UpdateChannelTracking.new(links: true, opens: true) }
 
     stub_request(:patch, "http://localhost:8002/channels/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
