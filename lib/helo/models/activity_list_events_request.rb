@@ -14,6 +14,7 @@ module Helo
     api_attribute :recipient, :string, key: "recipient"
     api_attribute :subject, :string, key: "subject"
     api_attribute :tags, key: "tags"
+    api_attribute :mail_type, :string, key: "mailType"
     api_attribute :event_types, key: "eventTypes"
   end
 end
