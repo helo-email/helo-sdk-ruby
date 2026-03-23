@@ -26,7 +26,7 @@ opts = {
   channel_id: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
-  tag: "example"
+  tags: ["example1", "example2"]
 }
 Helo::Statistics.retrieve_hourly(opts)
 ```
@@ -51,7 +51,7 @@ opts = {
   channel_id: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01",
   to: "2024-01-01",
-  tag: "example",
+  tags: ["example1", "example2"],
   timezone: "America/New_York"
 }
 Helo::Statistics.retrieve_daily(opts)
@@ -77,7 +77,7 @@ opts = {
   channel_id: "550e8400-e29b-41d4-a716-446655440000",
   from: "2024-01-01T00:00:00Z",
   to: "2024-01-01T00:00:00Z",
-  tag: "example"
+  tags: ["example1", "example2"]
 }
 Helo::Statistics.retrieve_totals(opts)
 ```
