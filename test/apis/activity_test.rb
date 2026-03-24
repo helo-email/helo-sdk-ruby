@@ -24,7 +24,7 @@ class ActivityTest < Minitest::Test
 
     result = Helo::Activity.list_messages(request_data)
 
-    assert_instance_of Helo::MessagesResponse, result
+    assert_instance_of Helo::PaginatedMessagesResponse, result
   end
 
   def test_retrieve_message

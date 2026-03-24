@@ -11,7 +11,7 @@ module Helo
     def list_messages(request_data = {})
       request = ActivityListMessagesRequest.new(request_data)
       response = @client.request(:get, "/activity/messages", params: request.to_params)
-      MessagesResponse.from_hash(response.body)
+      PaginatedMessagesResponse.from_hash(response.body)
     end
 
     def retrieve_message(id)

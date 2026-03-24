@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class MessagesResponseResult
+  class Message
     include Helo::Core::Model
 
     api_attribute :message_id, :string, key: "messageId"

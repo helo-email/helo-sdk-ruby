@@ -41,7 +41,7 @@ Helo::Activity.list_events(opts)
 
 ## list_messages
 
-> <MessagesResponse> list_messages(opts)
+> <PaginatedMessagesResponse> list_messages(opts)
 
 List messages
 
@@ -62,7 +62,7 @@ opts = {
   limit: 10,
   recipient: "example",
   subject: "example",
-  tag: "example",
+  tags: ["example1", "example2"],
   mail_type: "transactional",
   status: "sent"
 }
