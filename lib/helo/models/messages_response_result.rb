@@ -11,6 +11,7 @@ module Helo
     api_attribute :mail_source, :string, key: "mailSource"
     api_attribute :delivery_type, :string, key: "deliveryType"
     api_attribute :status, :string, key: "status"
+    api_attribute :subject, :string, key: "subject"
     api_attribute :recipients, key: "recipients"
   end
 end
