@@ -8,7 +8,7 @@ module Helo
     api_attribute :channel_id, :string, key: "channelId"
     api_attribute :from, :date, key: "from"
     api_attribute :to, :date, key: "to"
-    api_attribute :tags, key: "tags"
+    api_attribute :tags, key: "tags", explode: false
     api_attribute :timezone, :string, key: "timezone"
   end
 end

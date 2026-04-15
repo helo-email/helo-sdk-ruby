@@ -8,6 +8,6 @@ module Helo
     api_attribute :channel_id, :string, key: "channelId"
     api_attribute :from, :datetime, key: "from"
     api_attribute :to, :datetime, key: "to"
-    api_attribute :tags, key: "tags"
+    api_attribute :tags, key: "tags", explode: false
   end
 end

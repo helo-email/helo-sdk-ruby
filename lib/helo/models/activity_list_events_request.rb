@@ -13,8 +13,8 @@ module Helo
     api_attribute :limit, :integer, key: "limit"
     api_attribute :recipient, :string, key: "recipient"
     api_attribute :subject, :string, key: "subject"
-    api_attribute :tags, key: "tags"
+    api_attribute :tags, key: "tags", explode: false
     api_attribute :mail_type, :string, key: "mailType"
-    api_attribute :event_types, key: "eventTypes"
+    api_attribute :event_types, key: "eventTypes", explode: false
   end
 end
