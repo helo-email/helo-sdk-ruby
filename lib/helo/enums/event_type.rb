@@ -10,9 +10,10 @@ module Helo
     CLICKED = "clicked"
     COMPLAINED = "complained"
     UNSUBSCRIBED = "unsubscribed"
+    RESUBSCRIBED = "resubscribed"
 
     def self.all
-      [ACCEPTED, PROCESSED, DELIVERED, BOUNCED, OPENED, CLICKED, COMPLAINED, UNSUBSCRIBED].freeze
+      [ACCEPTED, PROCESSED, DELIVERED, BOUNCED, OPENED, CLICKED, COMPLAINED, UNSUBSCRIBED, RESUBSCRIBED].freeze
     end
   end
 end
