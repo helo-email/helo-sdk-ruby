@@ -23,7 +23,7 @@ module Helo
     api_attribute :tags, key: "tags"
     api_attribute :headers, key: "headers"
     api_attribute :metadata, key: "metadata"
-    api_attribute :attachments, key: "attachments"
+    api_attribute :attachments, Helo::Core::ArrayType.new("Helo::MessageDetailsResponseAttachment"), key: "attachments"
     api_attribute :tracking, Helo::Core::ModelType.new("Helo::MessageDetailsResponseTracking"), key: "tracking"
     api_attribute :events, Helo::Core::ArrayType.new("Helo::MessageDetailsResponseEvent"), key: "events"
   end
