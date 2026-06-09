@@ -8,5 +8,5 @@ require "webmock/minitest"
 
 Helo.configure do |config|
   config.base_url = "http://localhost:8002"
-  config.access_token = "test-token-123"
+  config.api_key = "test-token-123"
 end

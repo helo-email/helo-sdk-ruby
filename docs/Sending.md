@@ -20,11 +20,11 @@ Sends a single transactional email such as receipts, confirmations, or notificat
 
 ```ruby Sending_transactional
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 send_message_request = Helo::SendMessageRequest.new(
-  from: Helo::MailAddress1.new(email: "test-email", name: "test-name"),
+  from: Helo::MailAddress.new(email: "test-email", name: "test-name"),
   to: [],
   cc: [],
   bcc: [],
@@ -55,7 +55,7 @@ Sends multiple transactional emails in a single API request for better performan
 
 ```ruby Sending_transactionalBatch
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 send_message_batch_request = Helo::SendMessageBatchRequest.new(
@@ -77,11 +77,11 @@ Sends a broadcast email to multiple recipients for marketing or announcement pur
 
 ```ruby Sending_broadcast
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 send_broadcast_request = Helo::SendBroadcastRequest.new(
-  from: Helo::MailAddress1.new(email: "test-email", name: "test-name"),
+  from: Helo::MailAddress.new(email: "test-email", name: "test-name"),
   reply_to: [],
   template: {},
   tracking: {},
@@ -107,11 +107,11 @@ Sends a single broadcast email message.
 
 ```ruby Sending_broadcastMessage
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 send_message_request = Helo::SendMessageRequest.new(
-  from: Helo::MailAddress1.new(email: "test-email", name: "test-name"),
+  from: Helo::MailAddress.new(email: "test-email", name: "test-name"),
   to: [],
   cc: [],
   bcc: [],

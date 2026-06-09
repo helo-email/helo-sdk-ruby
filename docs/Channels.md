@@ -21,7 +21,7 @@ Retrieves a list of all channels accessible to the current user.
 
 ```ruby Channels_list
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 opts = {
@@ -47,7 +47,7 @@ Creates a new communication channel for organizing and routing messages.
 
 ```ruby Channels_create
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 create_channel_request = Helo::CreateChannelRequest.new(
@@ -71,7 +71,7 @@ Fetches the details and configuration of a specific channel.
 
 ```ruby Channels_retrieve
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -91,7 +91,7 @@ Modifies the settings and configuration of an existing channel.
 
 ```ruby Channels_update
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -116,7 +116,7 @@ Permanently removes a channel and all associated data.
 
 ```ruby Channels_delete
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"

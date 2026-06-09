@@ -30,7 +30,7 @@ module Helo::Core
         req.body = body
 
         # Set Authorization header with dynamic or static token
-        token = current_access_token
+        token = current_api_key
         req.headers["Authorization"] = "Bearer #{token}" if token
 
         # Apply default headers (convert snake_case to Header-Case)
@@ -49,8 +49,8 @@ module Helo::Core
 
     attr_reader :connection
 
-    def current_access_token
-      token = configuration.access_token
+    def current_api_key
+      token = configuration.api_key
       token.respond_to?(:call) ? token.call : token
     end
 

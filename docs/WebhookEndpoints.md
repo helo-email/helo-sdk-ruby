@@ -22,7 +22,7 @@ Retrieves all webhook endpoints configured for the account.
 
 ```ruby WebhookEndpoints_list
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 opts = {
@@ -46,7 +46,7 @@ Registers a new webhook endpoint to receive event notifications.
 
 ```ruby WebhookEndpoints_create
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 create_webhook_endpoint_request = Helo::CreateWebhookEndpointRequest.new(
@@ -72,7 +72,7 @@ Fetches the details and configuration of a specific webhook endpoint.
 
 ```ruby WebhookEndpoints_retrieve
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -92,7 +92,7 @@ Modifies the configuration of an existing webhook endpoint.
 
 ```ruby WebhookEndpoints_update
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -119,7 +119,7 @@ Permanently removes a webhook endpoint.
 
 ```ruby WebhookEndpoints_delete
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -139,7 +139,7 @@ Generates a new signing key for webhook payload verification.
 
 ```ruby WebhookEndpoints_regenerateSigningKey
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"

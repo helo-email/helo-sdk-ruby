@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class MailAddress1
+  class ActivityMailAddress
     include Helo::Core::Model
 
     api_attribute :email, :string, key: "email"

@@ -23,7 +23,7 @@ Retrieves all domains associated with the current account, including their verif
 
 ```ruby Domains_list
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 opts = {
@@ -48,7 +48,7 @@ Registers a new domain for sending emails. The domain must be verified before it
 
 ```ruby Domains_create
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 create_domain_request = Helo::CreateDomainRequest.new(
@@ -71,7 +71,7 @@ Gets detailed information about a specific domain, including verification status
 
 ```ruby Domains_retrieve
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -91,7 +91,7 @@ Modifies the configuration settings of an existing domain.
 
 ```ruby Domains_update
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -114,7 +114,7 @@ Removes a domain from the account. This will stop all email sending from this do
 
 ```ruby Domains_delete
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -134,7 +134,7 @@ Initiates the domain verification process by checking DNS records.
 
 ```ruby Domains_verify
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -154,7 +154,7 @@ Generates new DKIM keys for the domain. This is recommended for security best pr
 
 ```ruby Domains_rotateKey
 Helo.configure do |config|
-  config.access_token = "YOUR_BEARER_TOKEN"
+  config.api_key = "YOUR_API_KEY"
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
