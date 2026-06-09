@@ -7,6 +7,8 @@ module Helo::Core
     attr_reader :configuration
 
     def initialize(configuration, default_headers: {})
+      raise ArgumentError, "base_url is not configured" if configuration.base_url.to_s.empty?
+
       @configuration = configuration
       @default_headers = default_headers
       @connection = Faraday.new(url: configuration.base_url) do |f|
