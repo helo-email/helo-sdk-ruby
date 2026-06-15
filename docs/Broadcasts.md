@@ -20,7 +20,7 @@ Retrieves a paginated list of sent broadcasts with summary statistics.
 
 ```ruby Broadcasts_list
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 opts = {
@@ -45,7 +45,7 @@ Fetches details and statistics for a specific broadcast.
 
 ```ruby Broadcasts_retrieve
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -65,7 +65,7 @@ Retrieves a list of failed messages for a specific broadcast.
 
 ```ruby Broadcasts_listFailures
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
@@ -85,7 +85,7 @@ Retrieves a list of suppressed recipients for a specific broadcast.
 
 ```ruby Broadcasts_listSuppressions
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"

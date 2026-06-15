@@ -19,7 +19,7 @@ Retrieves activity events for messages, including delivery status, opens, clicks
 
 ```ruby Activity_listEvents
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 opts = {
@@ -51,7 +51,7 @@ Retrieves a paginated list of sent messages with basic tracking information.
 
 ```ruby Activity_listMessages
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 opts = {
@@ -82,7 +82,7 @@ Fetches detailed tracking information for a specific message, including all asso
 
 ```ruby Activity_retrieveMessage
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"

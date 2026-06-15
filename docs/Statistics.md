@@ -19,7 +19,7 @@ Fetches hourly aggregated statistics.
 
 ```ruby Statistics_retrieveHourly
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 opts = {
@@ -44,7 +44,7 @@ Fetches daily aggregated statistics.
 
 ```ruby Statistics_retrieveDaily
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 opts = {
@@ -70,7 +70,7 @@ Fetches cumulative statistics.
 
 ```ruby Statistics_retrieveTotals
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 opts = {

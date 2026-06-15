@@ -19,7 +19,7 @@ Retrieves a list of suppressed email addresses for a channel.
 
 ```ruby Suppressions_list
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 opts = {
@@ -44,7 +44,7 @@ Adds email addresses to the suppression list to prevent future sends.
 
 ```ruby Suppressions_create
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 create_suppressions_request = Helo::CreateSuppressionsRequest.new(
@@ -68,7 +68,7 @@ Removes email addresses from the suppression list to allow future sends.
 
 ```ruby Suppressions_remove
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 remove_suppressions_request = Helo::RemoveSuppressionsRequest.new(

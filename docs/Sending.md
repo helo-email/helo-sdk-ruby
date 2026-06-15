@@ -20,7 +20,7 @@ Sends a single transactional email such as receipts, confirmations, or notificat
 
 ```ruby Sending_transactional
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 send_message_request = Helo::SendMessageRequest.new(
@@ -55,7 +55,7 @@ Sends multiple transactional emails in a single API request for better performan
 
 ```ruby Sending_transactionalBatch
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 send_message_batch_request = Helo::SendMessageBatchRequest.new(
@@ -77,7 +77,7 @@ Sends a broadcast email to multiple recipients for marketing or announcement pur
 
 ```ruby Sending_broadcast
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 send_broadcast_request = Helo::SendBroadcastRequest.new(
@@ -107,7 +107,7 @@ Sends a single broadcast email message.
 
 ```ruby Sending_broadcastMessage
 Helo.configure do |config|
-  config.api_key = "YOUR_API_KEY"
+  config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 send_message_request = Helo::SendMessageRequest.new(
