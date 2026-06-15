@@ -10,7 +10,7 @@
 
 ## transactional
 
-> <SendMessageAcceptedResponse> transactional(send_message_request)
+> <SendMessageAcceptedResponse> transactional(send_message_request, channel_id:, idempotency_key:)
 
 Send a transactional email
 
@@ -39,13 +39,13 @@ send_message_request = Helo::SendMessageRequest.new(
   headers: {},
   metadata: {}
 )
-Helo::Sending.transactional(send_message_request)
+Helo::Sending.transactional(send_message_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 
 
 ## transactional_batch
 
-> <SendMessageBatchResponse> transactional_batch(send_message_batch_request)
+> <SendMessageBatchResponse> transactional_batch(send_message_batch_request, channel_id:, idempotency_key:)
 
 Send transactional emails in batch
 
@@ -61,13 +61,13 @@ end
 send_message_batch_request = Helo::SendMessageBatchRequest.new(
   requests: []
 )
-Helo::Sending.transactional_batch(send_message_batch_request)
+Helo::Sending.transactional_batch(send_message_batch_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 
 
 ## broadcast
 
-> <SendBroadcastResponse> broadcast(send_broadcast_request)
+> <SendBroadcastResponse> broadcast(send_broadcast_request, channel_id:, idempotency_key:)
 
 Send a broadcast email
 
@@ -91,13 +91,13 @@ send_broadcast_request = Helo::SendBroadcastRequest.new(
   metadata: {},
   messages: []
 )
-Helo::Sending.broadcast(send_broadcast_request)
+Helo::Sending.broadcast(send_broadcast_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 
 
 ## broadcast_message
 
-> <SendMessageAcceptedResponse> broadcast_message(send_message_request)
+> <SendMessageAcceptedResponse> broadcast_message(send_message_request, channel_id:, idempotency_key:)
 
 Send a single broadcast email
 
@@ -126,6 +126,6 @@ send_message_request = Helo::SendMessageRequest.new(
   headers: {},
   metadata: {}
 )
-Helo::Sending.broadcast_message(send_message_request)
+Helo::Sending.broadcast_message(send_message_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 

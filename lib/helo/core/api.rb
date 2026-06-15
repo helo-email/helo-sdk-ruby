@@ -16,11 +16,5 @@ module Helo::Core
     def initialize(client)
       @client = client
     end
-
-    def with_headers(headers)
-      self.class.new(@client.with_headers(headers))
-    end
-
-    class_methods :with_headers
   end
 end

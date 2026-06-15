@@ -6,11 +6,10 @@ module Helo::Core
   class Client
     attr_reader :configuration
 
-    def initialize(configuration, default_headers: {})
+    def initialize(configuration)
       raise ArgumentError, "base_url is not configured" if configuration.base_url.to_s.empty?
 
       @configuration = configuration
-      @default_headers = default_headers
       @connection = Faraday.new(url: configuration.base_url) do |f|
         f.request :json
         f.response :json
@@ -22,11 +21,7 @@ module Helo::Core
       end
     end
 
-    def with_headers(headers)
-      self.class.new(configuration, default_headers: @default_headers.merge(headers))
-    end
-
-    def request(method, path, params: {}, body: nil)
+    def request(method, path, params: {}, body: nil, headers: {})
       response = connection.public_send(method, path) do |req|
         req.params = params
         req.body = body
@@ -35,10 +30,9 @@ module Helo::Core
         token = current_api_key
         req.headers["Authorization"] = "Bearer #{token}" if token
 
-        # Apply default headers (convert snake_case to Header-Case)
-        @default_headers.each do |key, value|
-          header_name = key.to_s.split("_").map(&:capitalize).join("-")
-          req.headers[header_name] = value.to_s
+        # Apply per-request headers verbatim (already in wire form)
+        headers.each do |key, value|
+          req.headers[key.to_s] = value.to_s
         end
       end
 
