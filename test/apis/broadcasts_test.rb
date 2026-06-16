@@ -29,24 +29,26 @@ class BroadcastsTest < Minitest::Test
 
   def test_list_failures
     id = "550e8400-e29b-41d4-a716-446655440000"
+    request_data = {}
 
     stub_request(:get, "http://localhost:8002/broadcasts/#{id}/failures")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
       .to_return(status: 200, body: {}.to_json, headers: { "Content-Type" => "application/json" })
 
-    result = Helo::Broadcasts.list_failures(id)
+    result = Helo::Broadcasts.list_failures(id, request_data)
 
     assert_instance_of Helo::PaginatedResponseOfBroadcastFailure, result
   end
 
   def test_list_suppressions
     id = "550e8400-e29b-41d4-a716-446655440000"
+    request_data = {}
 
     stub_request(:get, "http://localhost:8002/broadcasts/#{id}/suppressions")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
       .to_return(status: 200, body: {}.to_json, headers: { "Content-Type" => "application/json" })
 
-    result = Helo::Broadcasts.list_suppressions(id)
+    result = Helo::Broadcasts.list_suppressions(id, request_data)
 
     assert_instance_of Helo::PaginatedResponseOfBroadcastSuppression, result
   end

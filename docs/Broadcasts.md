@@ -55,7 +55,7 @@ Helo::Broadcasts.retrieve(id)
 
 ## list_failures
 
-> <PaginatedResponseOfBroadcastFailure> list_failures(id)
+> <PaginatedResponseOfBroadcastFailure> list_failures(id, opts)
 
 List broadcast failures
 
@@ -69,13 +69,17 @@ Helo.configure do |config|
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
-Helo::Broadcasts.list_failures(id)
+opts = {
+  limit: 10,
+  offset: 10
+}
+Helo::Broadcasts.list_failures(id, opts)
 ```
 
 
 ## list_suppressions
 
-> <PaginatedResponseOfBroadcastSuppression> list_suppressions(id)
+> <PaginatedResponseOfBroadcastSuppression> list_suppressions(id, opts)
 
 List broadcast suppressions
 
@@ -89,6 +93,10 @@ Helo.configure do |config|
 end
 
 id = "550e8400-e29b-41d4-a716-446655440000"
-Helo::Broadcasts.list_suppressions(id)
+opts = {
+  limit: 10,
+  offset: 10
+}
+Helo::Broadcasts.list_suppressions(id, opts)
 ```
 
