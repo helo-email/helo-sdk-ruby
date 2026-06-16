@@ -24,7 +24,7 @@ module Helo::Core
       def to_params
         result = {}
         self.class._api_attributes.each do |attr_name, meta|
-          value = public_send(attr_name)
+          value = attributes[attr_name.to_s]
 
           if value.nil?
             next unless meta[:nullable] && @_explicitly_set&.include?(attr_name)
@@ -50,7 +50,7 @@ module Helo::Core
       end
 
       def []=(key, value)
-        public_send("#{key}=", value)
+        assign_attributes(key => value)
       end
 
       def inspect
