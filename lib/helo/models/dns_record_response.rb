@@ -8,5 +8,6 @@ module Helo
     api_attribute :host, :string, key: "host"
     api_attribute :value, :string, key: "value"
     api_attribute :status, :string, key: "status"
+    api_attribute :last_checked_at, :datetime, key: "lastCheckedAt"
   end
 end

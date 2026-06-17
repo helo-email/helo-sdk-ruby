@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/core_ext/class/attribute"
+
 module Helo::Core
   # Base class for all API resources
   class API
