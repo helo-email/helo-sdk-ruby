@@ -5,12 +5,12 @@ require_relative "lib/helo/version"
 Gem::Specification.new do |spec|
   spec.name = "helo-ruby"
   spec.version = Helo::VERSION
-  spec.authors = ["Generated"]
-  spec.email = ["generated@example.com"]
+  spec.authors = ["Helo Email"]
+  spec.email = ["engineering+ruby-sdk@helohq.com"]
 
   spec.summary = "Helo API"
   spec.description = "Helo API"
-  spec.homepage = "https://github.com/example/helo-ruby"
+  spec.homepage = "https://github.com/helo-email/helo-sdk-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 
@@ -26,4 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest", "~> 5.16"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "webmock", "~> 3.0"
+
+  spec.metadata = { "github_repo" => "ssh://github.com/helo-email/helo-sdk-ruby" }
 end
