@@ -11,6 +11,6 @@ module Helo
     api_attribute :enabled, :boolean, key: "enabled"
     api_attribute :additional_headers, Helo::Core::ArrayType.new("Helo::WebhookHeader"), key: "additionalHeaders"
     api_attribute :events, key: "events"
-    api_attribute :last_response, :string, key: "lastResponse"
+    api_attribute :last_response, Helo::Core::ModelType.new("Helo::WebhookEndpointLastResponse"), key: "lastResponse", nullable: true
   end
 end
