@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class CreateWebhookEndpointRequest
+  class CreateWebhookRequest
     include Helo::Core::Model
 
     api_attribute :url, :string, key: "url"

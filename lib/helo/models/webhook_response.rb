@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class WebhookEndpointResponse
+  class WebhookResponse
     include Helo::Core::Model
 
     api_attribute :id, :string, key: "id"
@@ -11,5 +11,6 @@ module Helo
     api_attribute :enabled, :boolean, key: "enabled"
     api_attribute :additional_headers, Helo::Core::ArrayType.new("Helo::WebhookHeader"), key: "additionalHeaders"
     api_attribute :events, key: "events"
+    api_attribute :last_response, Helo::Core::ModelType.new("Helo::WebhookLastResponse"), key: "lastResponse", nullable: true
   end
 end

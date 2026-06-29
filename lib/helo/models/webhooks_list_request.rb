@@ -2,7 +2,7 @@
 
 module Helo
   # Generated request model for query parameters
-  class WebhookEndpointsListRequest
+  class WebhooksListRequest
     include Helo::Core::Model
 
     api_attribute :limit, :integer, key: "limit"
