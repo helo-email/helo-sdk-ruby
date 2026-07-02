@@ -2,11 +2,6 @@
 
 module Helo
   class Webhooks < API
-    def list_for_channel(id)
-      response = @client.request(:get, "/app/channels/#{id}/webhooks")
-      WebhooksResponse.from_hash(response.body)
-    end
-
     def list(request_data = {})
       request = WebhooksListRequest.new(request_data)
       response = @client.request(:get, "/webhooks", params: request.to_params)
@@ -40,6 +35,6 @@ module Helo
       WebhookResponse.from_hash(response.body)
     end
 
-    class_methods :list_for_channel, :list, :create, :retrieve, :update, :delete, :regenerate_signing_key
+    class_methods :list, :create, :retrieve, :update, :delete, :regenerate_signing_key
   end
 end
