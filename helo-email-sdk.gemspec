@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Helo Email"]
   spec.email = ["rubygems@helohq.com"]
 
-  spec.summary = "Helo API"
-  spec.description = "Helo API"
+  spec.summary = "Helo Ruby SDK"
+  spec.description = "Ruby SDK for the Helo Email API (https://helohq.com)."
   spec.homepage = "https://github.com/helo-email/helo-sdk-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
