@@ -16,7 +16,7 @@ class WebhooksTest < Minitest::Test
   end
 
   def test_create
-    request_data = { url: "test-url", events: ["accepted", "processed"], channel_id: "550e8400-e29b-41d4-a716-446655440000", additional_headers: [], enabled: true }
+    request_data = { url: "test-url", events: ["accepted", "processed"], channel_id: "550e8400-e29b-41d4-a716-446655440000", additional_headers: [Helo::WebhookHeader.new(name: "test-name", value: "test-value")], enabled: true }
 
     stub_request(:post, "http://localhost:8002/webhooks")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -41,7 +41,7 @@ class WebhooksTest < Minitest::Test
 
   def test_update
     id = "550e8400-e29b-41d4-a716-446655440000"
-    request_data = { url: "test-url", events: ["accepted", "processed"], channel_id: "550e8400-e29b-41d4-a716-446655440000", additional_headers: [], enabled: true }
+    request_data = { url: "test-url", events: ["accepted", "processed"], channel_id: "550e8400-e29b-41d4-a716-446655440000", additional_headers: [Helo::WebhookHeader.new(name: "test-name", value: "test-value")], enabled: true }
 
     stub_request(:patch, "http://localhost:8002/webhooks/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })

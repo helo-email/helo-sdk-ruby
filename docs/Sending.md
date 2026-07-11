@@ -24,18 +24,18 @@ Helo.configure do |config|
 end
 
 send_message_request = Helo::SendMessageRequest.new(
-  from: Helo::MailAddress.new(email: "test-email", name: "test-name"),
-  to: [],
-  cc: [],
-  bcc: [],
-  reply_to: [],
-  subject: "test-subject",
-  html: "test-html",
-  text: "test-text",
+  from: Helo::MailAddress.new(email: "from@yourdomain.com", name: "From name"),
+  to: [Helo::MailAddress.new(email: "to@example.com", name: "To name")],
+  cc: [Helo::MailAddress.new(email: "cc@example.com", name: "Cc name")],
+  bcc: [Helo::MailAddress.new(email: "bcc@example.com", name: "Bcc name")],
+  reply_to: [Helo::MailAddress.new(email: "reply-to@example.com", name: "Reply-To name")],
+  subject: "Hello from Helo",
+  html: "<h1>Welcome to Helo!</h1>",
+  text: "Welcome to Helo!",
   template: {},
   tracking: {},
-  attachments: [],
-  tags: ["example1", "example2"],
+  attachments: [Helo::Attachment.new(content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT)],
+  tags: ["welcome", "onboarding"],
   headers: {},
   metadata: {}
 )
@@ -59,7 +59,7 @@ Helo.configure do |config|
 end
 
 send_message_batch_request = Helo::SendMessageBatchRequest.new(
-  requests: []
+  requests: [Helo::SendMessageRequest.new(to: [], cc: [], bcc: [], reply_to: [], subject: "test-subject", html: "test-html", text: "test-text", template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {})]
 )
 Helo::Sending.transactional_batch(send_message_batch_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
@@ -82,10 +82,10 @@ end
 
 send_broadcast_request = Helo::SendBroadcastRequest.new(
   from: Helo::MailAddress.new(email: "test-email", name: "test-name"),
-  reply_to: [],
+  reply_to: [Helo::MailAddress.new(email: "test-email", name: "test-name")],
   template: {},
   tracking: {},
-  attachments: [],
+  attachments: [Helo::Attachment.new(content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT)],
   tags: ["example1", "example2"],
   headers: {},
   metadata: {},
@@ -111,18 +111,18 @@ Helo.configure do |config|
 end
 
 send_message_request = Helo::SendMessageRequest.new(
-  from: Helo::MailAddress.new(email: "test-email", name: "test-name"),
-  to: [],
-  cc: [],
-  bcc: [],
-  reply_to: [],
-  subject: "test-subject",
-  html: "test-html",
-  text: "test-text",
+  from: Helo::MailAddress.new(email: "from@yourdomain.com", name: "From name"),
+  to: [Helo::MailAddress.new(email: "to@example.com", name: "To name")],
+  cc: [Helo::MailAddress.new(email: "cc@example.com", name: "Cc name")],
+  bcc: [Helo::MailAddress.new(email: "bcc@example.com", name: "Bcc name")],
+  reply_to: [Helo::MailAddress.new(email: "reply-to@example.com", name: "Reply-To name")],
+  subject: "Hello from Helo",
+  html: "<h1>Welcome to Helo!</h1>",
+  text: "Welcome to Helo!",
   template: {},
   tracking: {},
-  attachments: [],
-  tags: ["example1", "example2"],
+  attachments: [Helo::Attachment.new(content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT)],
+  tags: ["welcome", "onboarding"],
   headers: {},
   metadata: {}
 )

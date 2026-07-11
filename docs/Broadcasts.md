@@ -4,8 +4,8 @@
 | ------ | ------------ | ----------- |
 | [**list**](Broadcasts.md#list) | **GET** /broadcasts | List broadcasts |
 | [**retrieve**](Broadcasts.md#retrieve) | **GET** /broadcasts/{id} | Retrieve a broadcast |
-| [**list_failures**](Broadcasts.md#list_failures) | **GET** /broadcasts/{id}/failures | List broadcast failures |
-| [**list_suppressions**](Broadcasts.md#list_suppressions) | **GET** /broadcasts/{id}/suppressions | List broadcast suppressions |
+| [**list_failures**](Broadcasts.md#list_failures) | **GET** /broadcasts/{id}/failures | List failed broadcast messages |
+| [**list_suppressions**](Broadcasts.md#list_suppressions) | **GET** /broadcasts/{id}/suppressions | List broadcast suppressed recipients |
 
 
 ## list
@@ -57,9 +57,9 @@ Helo::Broadcasts.retrieve(id)
 
 > <PaginatedResponseOfBroadcastFailure> list_failures(id, opts)
 
-List broadcast failures
+List failed broadcast messages
 
-Retrieves a list of failed messages for a specific broadcast.
+Returns messages that could not be delivered due to permanent errors (e.g. invalid addresses, domain issues). Transient errors that were retried successfully do not appear here.
 
 ### Example
 
@@ -81,9 +81,9 @@ Helo::Broadcasts.list_failures(id, opts)
 
 > <PaginatedResponseOfBroadcastSuppression> list_suppressions(id, opts)
 
-List broadcast suppressions
+List broadcast suppressed recipients
 
-Retrieves a list of suppressed recipients for a specific broadcast.
+Returns recipients that were skipped because they appear on a suppression list (e.g. previous bounces or unsubscribes).
 
 ### Example
 

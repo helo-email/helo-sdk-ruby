@@ -5,10 +5,10 @@ module Helo
     ACCEPTED = "accepted"
     PROCESSING = "processing"
     COMPLETED = "completed"
-    CANCELLED = "cancelled"
+    CANCELED = "canceled"
 
     def self.all
-      [ACCEPTED, PROCESSING, COMPLETED, CANCELLED].freeze
+      [ACCEPTED, PROCESSING, COMPLETED, CANCELED].freeze
     end
   end
 end

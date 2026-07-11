@@ -3,14 +3,14 @@
 require_relative "lib/helo/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "helo-ruby"
+  spec.name = "helo-email-sdk"
   spec.version = Helo::VERSION
-  spec.authors = ["Generated"]
-  spec.email = ["generated@example.com"]
+  spec.authors = ["Helo Email"]
+  spec.email = ["rubygems@helohq.com"]
 
   spec.summary = "Helo API"
   spec.description = "Helo API"
-  spec.homepage = "https://github.com/example/helo-ruby"
+  spec.homepage = "https://github.com/helo-email/helo-sdk-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.2.0"
 

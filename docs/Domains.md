@@ -85,7 +85,7 @@ Helo::Domains.retrieve(id)
 
 Update a domain
 
-Modifies the configuration settings of an existing domain.
+Modifies an existing domain by ID.
 
 ### Example
 
