@@ -13,5 +13,7 @@ module Helo
     api_attribute :status, :string, key: "status"
     api_attribute :subject, :string, key: "subject"
     api_attribute :recipients, key: "recipients"
+    api_attribute :tags, key: "tags"
+    api_attribute :statistics, Helo::Core::ModelType.new("Helo::MessageStatistics"), key: "statistics"
   end
 end

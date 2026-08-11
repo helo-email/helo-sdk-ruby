@@ -26,5 +26,6 @@ module Helo
     api_attribute :attachments, Helo::Core::ArrayType.new("Helo::MessageDetailsResponseAttachment"), key: "attachments"
     api_attribute :tracking, Helo::Core::ModelType.new("Helo::MessageDetailsResponseTracking"), key: "tracking"
     api_attribute :events, Helo::Core::ArrayType.new("Helo::MessageDetailsResponseEvent"), key: "events"
+    api_attribute :statistics, Helo::Core::ModelType.new("Helo::MessageStatistics"), key: "statistics"
   end
 end
