@@ -6,7 +6,7 @@ class StatisticsTest < Minitest::Test
   def test_retrieve_hourly
     request_data = {}
 
-    stub_request(:get, "http://localhost:8002/activity/statistics/hourly")
+    stub_request(:get, "http://localhost:8002/statistics/hourly")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
       .to_return(status: 200, body: {}.to_json, headers: { "Content-Type" => "application/json" })
 
@@ -18,7 +18,7 @@ class StatisticsTest < Minitest::Test
   def test_retrieve_daily
     request_data = {}
 
-    stub_request(:get, "http://localhost:8002/activity/statistics/daily")
+    stub_request(:get, "http://localhost:8002/statistics/daily")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
       .to_return(status: 200, body: {}.to_json, headers: { "Content-Type" => "application/json" })
 
@@ -30,7 +30,7 @@ class StatisticsTest < Minitest::Test
   def test_retrieve_totals
     request_data = {}
 
-    stub_request(:get, "http://localhost:8002/activity/statistics/totals")
+    stub_request(:get, "http://localhost:8002/statistics/totals")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
       .to_return(status: 200, body: {}.to_json, headers: { "Content-Type" => "application/json" })
 

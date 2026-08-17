@@ -2,9 +2,9 @@
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**retrieve_hourly**](Statistics.md#retrieve_hourly) | **GET** /activity/statistics/hourly | Retrieve hourly statistics |
-| [**retrieve_daily**](Statistics.md#retrieve_daily) | **GET** /activity/statistics/daily | Retrieve daily statistics |
-| [**retrieve_totals**](Statistics.md#retrieve_totals) | **GET** /activity/statistics/totals | Retrieve all time statistics |
+| [**retrieve_hourly**](Statistics.md#retrieve_hourly) | **GET** /statistics/hourly | Retrieve hourly statistics |
+| [**retrieve_daily**](Statistics.md#retrieve_daily) | **GET** /statistics/daily | Retrieve daily statistics |
+| [**retrieve_totals**](Statistics.md#retrieve_totals) | **GET** /statistics/totals | Retrieve all time statistics |
 
 
 ## retrieve_hourly

@@ -4,19 +4,19 @@ module Helo
   class Statistics < API
     def retrieve_hourly(request_data = {})
       request = StatisticsRetrieveHourlyRequest.new(request_data)
-      response = @client.request(:get, "/activity/statistics/hourly", params: request.to_params)
+      response = @client.request(:get, "/statistics/hourly", params: request.to_params)
       StatisticsHourlyResponse.from_hash(response.body)
     end
 
     def retrieve_daily(request_data = {})
       request = StatisticsRetrieveDailyRequest.new(request_data)
-      response = @client.request(:get, "/activity/statistics/daily", params: request.to_params)
+      response = @client.request(:get, "/statistics/daily", params: request.to_params)
       StatisticsDailyResponse.from_hash(response.body)
     end
 
     def retrieve_totals(request_data = {})
       request = StatisticsRetrieveTotalsRequest.new(request_data)
-      response = @client.request(:get, "/activity/statistics/totals", params: request.to_params)
+      response = @client.request(:get, "/statistics/totals", params: request.to_params)
       StatisticsTotalsResponse.from_hash(response.body)
     end
 
