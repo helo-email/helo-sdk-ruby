@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 module Helo
-  class OpenedWebhookPayload
+  class DeliveryWebhookPayloadCommon
     include Helo::Core::Model
 
-    api_attribute :event_type, :string, key: "eventType"
-    api_attribute :recipient, :string, key: "recipient"
-    api_attribute :details, :string, key: "details"
     api_attribute :message_id, :string, key: "messageId"
     api_attribute :channel_id, :string, key: "channelId"
     api_attribute :mail_type, :string, key: "mailType"
