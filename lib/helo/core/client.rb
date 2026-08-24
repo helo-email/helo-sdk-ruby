@@ -10,15 +10,6 @@ module Helo::Core
       raise ArgumentError, "base_url is not configured" if configuration.base_url.to_s.empty?
 
       @configuration = configuration
-      @connection = Faraday.new(url: configuration.base_url) do |f|
-        f.request :json
-        f.response :json
-        f.adapter Faraday.default_adapter
-        f.options.params_encoder = Faraday::FlatParamsEncoder
-
-        # Allow custom Faraday configuration
-        configuration.faraday_configuration_block&.call(f)
-      end
     end
 
     def request(method, path, params: {}, body: nil, headers: {})
@@ -43,7 +34,17 @@ module Helo::Core
 
     private
 
-    attr_reader :connection
+    def connection
+      @_connection ||= Faraday.new(url: configuration.base_url) do |f|
+        f.request :json
+        f.response :json
+        f.adapter Faraday.default_adapter
+        f.options.params_encoder = Faraday::FlatParamsEncoder
+
+        # Allow custom Faraday configuration
+        configuration.faraday_configuration_block&.call(f)
+      end
+    end
 
     def current_api_key
       token = configuration.api_key
