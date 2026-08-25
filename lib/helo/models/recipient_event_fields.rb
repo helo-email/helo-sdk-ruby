@@ -5,6 +5,5 @@ module Helo
     include Helo::Core::Model
 
     api_attribute :recipient, :string, key: "recipient"
-    api_attribute :details, :string, key: "details"
   end
 end
