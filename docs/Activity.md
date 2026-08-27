@@ -33,7 +33,7 @@ opts = {
   subject: "example",
   tags: ["example1", "example2"],
   mail_type: "transactional",
-  event_types: ["accepted", "processed"]
+  event_types: [Helo::EventType::ACCEPTED, Helo::EventType::PROCESSED]
 }
 Helo::Activity.list_events(opts)
 ```
@@ -64,7 +64,7 @@ opts = {
   subject: "example",
   tags: ["example1", "example2"],
   mail_type: "transactional",
-  status: "sent"
+  status: Helo::MessageStatus::QUEUED
 }
 Helo::Activity.list_messages(opts)
 ```
