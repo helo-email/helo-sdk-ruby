@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Helo
-  class ClickedWebhookPayload
+  class EmailBouncedWebhookPayload
     include Helo::Core::Model
 
     api_attribute :event_type, :string, key: "eventType"
-    api_attribute :details, Helo::Core::ModelType.new("Helo::ClickedDetails"), key: "details"
+    api_attribute :details, Helo::Core::ModelType.new("Helo::BouncedDetails"), key: "details"
     api_attribute :recipient, :string, key: "recipient"
     api_attribute :message_id, :string, key: "messageId"
     api_attribute :channel_id, :string, key: "channelId"

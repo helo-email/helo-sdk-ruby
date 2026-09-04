@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Helo
-  class UnsubscribedWebhookPayload
+  class RecipientUnsubscribedWebhookPayload
     include Helo::Core::Model
 
     api_attribute :event_type, :string, key: "eventType"
