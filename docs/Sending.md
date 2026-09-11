@@ -2,15 +2,15 @@
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**transactional**](Sending.md#transactional) | **POST** /send/transactional | Send a transactional email |
-| [**transactional_batch**](Sending.md#transactional_batch) | **POST** /send/transactional/batch | Send transactional emails in batch |
-| [**broadcast**](Sending.md#broadcast) | **POST** /send/broadcast | Send a broadcast email |
-| [**broadcast_message**](Sending.md#broadcast_message) | **POST** /send/broadcast/message | Send a single broadcast email |
+| [**send_transactional**](Sending.md#send_transactional) | **POST** /send/transactional | Send a transactional email |
+| [**send_transactional_batch**](Sending.md#send_transactional_batch) | **POST** /send/transactional/batch | Send transactional emails in batch |
+| [**send_broadcast**](Sending.md#send_broadcast) | **POST** /send/broadcast | Send_broadcast operation |
+| [**send_broadcast_message**](Sending.md#send_broadcast_message) | **POST** /send/broadcast/message | Send a single broadcast email |
 
 
-## transactional
+## send_transactional
 
-> <SendMessageAcceptedResponse> transactional(send_message_request, channel_id:, idempotency_key:)
+> <SendMessageAcceptedResponse> send_transactional(send_message_request, channel_id:, idempotency_key:)
 
 Send a transactional email
 
@@ -18,7 +18,7 @@ Sends a single transactional email such as receipts, confirmations, or notificat
 
 ### Example
 
-```ruby Sending_transactional
+```ruby Sending_sendTransactional
 Helo.configure do |config|
   config.api_key = ENV.fetch("HELO_API_KEY")
 end
@@ -39,13 +39,13 @@ send_message_request = Helo::SendMessageRequest.new(
   headers: {},
   metadata: {}
 )
-Helo::Sending.transactional(send_message_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
+Helo::Sending.send_transactional(send_message_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 
 
-## transactional_batch
+## send_transactional_batch
 
-> <SendMessageBatchResponse> transactional_batch(send_message_batch_request, channel_id:, idempotency_key:)
+> <SendMessageBatchResponse> send_transactional_batch(send_message_batch_request, channel_id:, idempotency_key:)
 
 Send transactional emails in batch
 
@@ -53,29 +53,27 @@ Sends multiple transactional emails in a single API request for better performan
 
 ### Example
 
-```ruby Sending_transactionalBatch
+```ruby Sending_sendTransactionalBatch
 Helo.configure do |config|
   config.api_key = ENV.fetch("HELO_API_KEY")
 end
 
 send_message_batch_request = Helo::SendMessageBatchRequest.new(
-  requests: [Helo::SendMessageRequest.new(to: [], cc: [], bcc: [], reply_to: [], subject: "test-subject", html: "test-html", text: "test-text", template: {}, tracking: {}, attachments: [], tags: ["example1", "example2"], headers: {}, metadata: {})]
+  requests: [Helo::SendMessageRequest.new(to: [], cc: [], bcc: [], reply_to: [], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", template: {}, tracking: {}, attachments: [], tags: ["welcome", "onboarding"], headers: {}, metadata: {})]
 )
-Helo::Sending.transactional_batch(send_message_batch_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
+Helo::Sending.send_transactional_batch(send_message_batch_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 
 
-## broadcast
+## send_broadcast
 
-> <SendBroadcastResponse> broadcast(send_broadcast_request, channel_id:, idempotency_key:)
+> <SendBroadcastResponse> send_broadcast(send_broadcast_request, channel_id:, idempotency_key:)
 
-Send a broadcast email
-
-Sends a broadcast email to multiple recipients for marketing or announcement purposes.
+Send_broadcast operation
 
 ### Example
 
-```ruby Sending_broadcast
+```ruby Sending_sendBroadcast
 Helo.configure do |config|
   config.api_key = ENV.fetch("HELO_API_KEY")
 end
@@ -91,13 +89,13 @@ send_broadcast_request = Helo::SendBroadcastRequest.new(
   metadata: {},
   messages: []
 )
-Helo::Sending.broadcast(send_broadcast_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
+Helo::Sending.send_broadcast(send_broadcast_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 
 
-## broadcast_message
+## send_broadcast_message
 
-> <SendMessageAcceptedResponse> broadcast_message(send_message_request, channel_id:, idempotency_key:)
+> <SendMessageAcceptedResponse> send_broadcast_message(send_message_request, channel_id:, idempotency_key:)
 
 Send a single broadcast email
 
@@ -105,7 +103,7 @@ Sends a single broadcast email message.
 
 ### Example
 
-```ruby Sending_broadcastMessage
+```ruby Sending_sendBroadcastMessage
 Helo.configure do |config|
   config.api_key = ENV.fetch("HELO_API_KEY")
 end
@@ -126,6 +124,6 @@ send_message_request = Helo::SendMessageRequest.new(
   headers: {},
   metadata: {}
 )
-Helo::Sending.broadcast_message(send_message_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
+Helo::Sending.send_broadcast_message(send_message_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
 ```
 

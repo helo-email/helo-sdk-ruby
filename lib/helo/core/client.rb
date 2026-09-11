@@ -21,6 +21,8 @@ module Helo::Core
         token = current_api_key
         req.headers["Authorization"] = "Bearer #{token}" if token
 
+        req.headers["User-Agent"] = user_agent if user_agent
+
         # Apply per-request headers verbatim (already in wire form)
         headers.each do |key, value|
           req.headers[key.to_s] = value.to_s
@@ -30,6 +32,12 @@ module Helo::Core
       handle_response(response)
     rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
       handle_connection_error(e)
+    end
+
+    # The generated Client subclass overrides this with the package identity it
+    # was generated for; Helo::Core on its own has no package to name.
+    def user_agent
+      nil
     end
 
     private

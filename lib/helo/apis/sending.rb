@@ -2,7 +2,7 @@
 
 module Helo
   class Sending < API
-    def transactional(request_data, channel_id: nil, idempotency_key: nil)
+    def send_transactional(request_data, channel_id: nil, idempotency_key: nil)
       request = SendMessageRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
@@ -11,7 +11,7 @@ module Helo
       SendMessageAcceptedResponse.from_hash(response.body)
     end
 
-    def transactional_batch(request_data, channel_id: nil, idempotency_key: nil)
+    def send_transactional_batch(request_data, channel_id: nil, idempotency_key: nil)
       request = SendMessageBatchRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
@@ -20,7 +20,7 @@ module Helo
       SendMessageBatchResponse.from_hash(response.body)
     end
 
-    def broadcast(request_data, channel_id: nil, idempotency_key: nil)
+    def send_broadcast(request_data, channel_id: nil, idempotency_key: nil)
       request = SendBroadcastRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
@@ -29,7 +29,7 @@ module Helo
       SendBroadcastResponse.from_hash(response.body)
     end
 
-    def broadcast_message(request_data, channel_id: nil, idempotency_key: nil)
+    def send_broadcast_message(request_data, channel_id: nil, idempotency_key: nil)
       request = SendMessageRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
@@ -38,6 +38,6 @@ module Helo
       SendMessageAcceptedResponse.from_hash(response.body)
     end
 
-    class_methods :transactional, :transactional_batch, :broadcast, :broadcast_message
+    class_methods :send_transactional, :send_transactional_batch, :send_broadcast, :send_broadcast_message
   end
 end
