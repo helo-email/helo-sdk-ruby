@@ -1,0 +1,42 @@
+name: Publish
+
+# Pushes the gem for a release. Runs when a release is published by hand, or
+# when release.yml dispatches it against the tag it just created.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency:
+  group: publish-${{ github.ref }}
+
+permissions:
+  contents: read
+  id-token: write # RubyGems trusted publishing
+
+jobs:
+  publish:
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    environment: rubygems
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+
+      - name: Check tag matches VERSION
+        run: |
+          version=$(ruby -r ./lib/helo/version -e 'print Helo::VERSION')
+          if [ "$GITHUB_REF_NAME" != "$version" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match Helo::VERSION $version" && exit 1
+          fi
+
+      - name: Build gem
+        run: gem build helo-email-sdk.gemspec
+
+      - uses: rubygems/configure-rubygems-credentials@v1.0.0
+
+      - name: Push gem
+        run: gem push helo-email-sdk-*.gem

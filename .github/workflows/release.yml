@@ -1,0 +1,61 @@
+name: Release
+
+# Helo::VERSION is the source of truth: when it changes on main, tag that
+# commit and create the GitHub release. publish.yml then pushes the gem.
+on:
+  push:
+    branches: [main]
+    paths: [lib/helo/version.rb]
+  workflow_dispatch:
+
+concurrency:
+  group: release
+
+permissions:
+  contents: write # tag and GitHub release
+  actions: write # dispatch publish.yml
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: Read version
+        id: version
+        run: |
+          version=$(ruby -r ./lib/helo/version -e 'print Helo::VERSION')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/$version" >/dev/null; then
+            echo "Tag $version already exists, nothing to release."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Test
+        if: steps.version.outputs.exists != 'true'
+        run: bundle exec rake test
+
+      # Creates the tag on this commit too.
+      - name: Create GitHub release
+        if: steps.version.outputs.exists != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          prerelease=$([[ "$VERSION" == *-* ]] && echo --prerelease || true)
+          gh release create "$VERSION" --target "$GITHUB_SHA" --title "$VERSION" --generate-notes $prerelease
+
+      # Releases created with GITHUB_TOKEN don't trigger `release` workflows,
+      # but workflow_dispatch is exempt from that rule.
+      - name: Publish gem
+        if: steps.version.outputs.exists != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: gh workflow run publish.yml --ref "$VERSION"
