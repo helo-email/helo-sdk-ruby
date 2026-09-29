@@ -4,7 +4,7 @@ require "test_helper"
 
 class SendingTest < Minitest::Test
   def test_send_transactional
-    request_data = { from: Helo::MailAddress.new(email: "from@yourdomain.com", name: "From name"), to: [Helo::MailAddress.new(email: "to@example.com", name: "To name")], cc: [Helo::MailAddress.new(email: "cc@example.com", name: "Cc name")], bcc: [Helo::MailAddress.new(email: "bcc@example.com", name: "Bcc name")], reply_to: [Helo::MailAddress.new(email: "reply-to@example.com", name: "Reply-To name")], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", template: {}, tracking: {}, attachments: [Helo::Attachment.new(content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT)], tags: ["welcome", "onboarding"], headers: {}, metadata: {} }
+    request_data = { from: { email: "from@yourdomain.com", name: "From name" }, to: [{ email: "to@example.com", name: "To name" }], cc: [{ email: "cc@example.com", name: "Cc name" }], bcc: [{ email: "bcc@example.com", name: "Bcc name" }], reply_to: [{ email: "reply-to@example.com", name: "Reply-To name" }], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", template: {}, tracking: {}, attachments: [{ content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT }], tags: ["welcome", "onboarding"], headers: {}, metadata: {} }
 
     stub_request(:post, "http://localhost:8002/send/transactional")
       .with(headers: { "Authorization" => "Bearer test-token-123", "X-Helo-Channel-Id" => "550e8400-e29b-41d4-a716-446655440000", "X-Helo-Idempotency-Key" => "example" })
@@ -16,7 +16,7 @@ class SendingTest < Minitest::Test
   end
 
   def test_send_transactional_batch
-    request_data = { requests: [Helo::SendMessageRequest.new(to: [], cc: [], bcc: [], reply_to: [], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", template: {}, tracking: {}, attachments: [], tags: ["welcome", "onboarding"], headers: {}, metadata: {})] }
+    request_data = { requests: [{ to: [], cc: [], bcc: [], reply_to: [], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", template: {}, tracking: {}, attachments: [], tags: ["welcome", "onboarding"], headers: {}, metadata: {} }] }
 
     stub_request(:post, "http://localhost:8002/send/transactional/batch")
       .with(headers: { "Authorization" => "Bearer test-token-123", "X-Helo-Channel-Id" => "550e8400-e29b-41d4-a716-446655440000", "X-Helo-Idempotency-Key" => "example" })
@@ -28,7 +28,7 @@ class SendingTest < Minitest::Test
   end
 
   def test_send_broadcast
-    request_data = { from: Helo::MailAddress.new(email: "test-email", name: "test-name"), reply_to: [Helo::MailAddress.new(email: "test-email", name: "test-name")], template: {}, tracking: {}, attachments: [Helo::Attachment.new(content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT)], tags: ["example1", "example2"], headers: {}, metadata: {}, messages: [] }
+    request_data = { from: { email: "test-email", name: "test-name" }, reply_to: [{ email: "test-email", name: "test-name" }], template: {}, tracking: {}, attachments: [{ content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT }], tags: ["example1", "example2"], headers: {}, metadata: {}, messages: [] }
 
     stub_request(:post, "http://localhost:8002/send/broadcast")
       .with(headers: { "Authorization" => "Bearer test-token-123", "X-Helo-Channel-Id" => "550e8400-e29b-41d4-a716-446655440000", "X-Helo-Idempotency-Key" => "example" })
@@ -40,7 +40,7 @@ class SendingTest < Minitest::Test
   end
 
   def test_send_broadcast_message
-    request_data = { from: Helo::MailAddress.new(email: "from@yourdomain.com", name: "From name"), to: [Helo::MailAddress.new(email: "to@example.com", name: "To name")], cc: [Helo::MailAddress.new(email: "cc@example.com", name: "Cc name")], bcc: [Helo::MailAddress.new(email: "bcc@example.com", name: "Bcc name")], reply_to: [Helo::MailAddress.new(email: "reply-to@example.com", name: "Reply-To name")], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", template: {}, tracking: {}, attachments: [Helo::Attachment.new(content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT)], tags: ["welcome", "onboarding"], headers: {}, metadata: {} }
+    request_data = { from: { email: "from@yourdomain.com", name: "From name" }, to: [{ email: "to@example.com", name: "To name" }], cc: [{ email: "cc@example.com", name: "Cc name" }], bcc: [{ email: "bcc@example.com", name: "Bcc name" }], reply_to: [{ email: "reply-to@example.com", name: "Reply-To name" }], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", template: {}, tracking: {}, attachments: [{ content: "test-content", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT }], tags: ["welcome", "onboarding"], headers: {}, metadata: {} }
 
     stub_request(:post, "http://localhost:8002/send/broadcast/message")
       .with(headers: { "Authorization" => "Bearer test-token-123", "X-Helo-Channel-Id" => "550e8400-e29b-41d4-a716-446655440000", "X-Helo-Idempotency-Key" => "example" })

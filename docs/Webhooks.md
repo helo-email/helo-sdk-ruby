@@ -53,7 +53,7 @@ create_webhook_request = Helo::CreateWebhookRequest.new(
   url: "test-url",
   events: [Helo::WebhookEvent::MESSAGE_ACCEPTED, Helo::WebhookEvent::MESSAGE_PROCESSED],
   channel_id: "550e8400-e29b-41d4-a716-446655440000",
-  additional_headers: [Helo::WebhookHeader.new(name: "test-name", value: "test-value")],
+  additional_headers: [{ name: "test-name", value: "test-value" }],
   enabled: true
 )
 Helo::Webhooks.create(create_webhook_request)
@@ -100,7 +100,7 @@ update_webhook_request = Helo::UpdateWebhookRequest.new(
   url: "test-url",
   events: [Helo::WebhookEvent::MESSAGE_ACCEPTED, Helo::WebhookEvent::MESSAGE_PROCESSED],
   channel_id: "550e8400-e29b-41d4-a716-446655440000",
-  additional_headers: [Helo::WebhookHeader.new(name: "test-name", value: "test-value")],
+  additional_headers: [{ name: "test-name", value: "test-value" }],
   enabled: true
 )
 Helo::Webhooks.update(id, update_webhook_request)
