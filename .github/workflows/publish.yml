@@ -1,24 +1,32 @@
 name: Publish
 
-# Pushes the gem for a release. Runs when a release is published by hand, or
-# when release.yml dispatches it against the tag it just created.
+# Pushes the gem when a version tag (e.g. 1.0.1, 1.0.1-beta.1) is pushed, once
+# the same tests that gate pull requests pass. release.yml also dispatches it
+# against the tag it creates, since tags pushed with GITHUB_TOKEN don't trigger
+# `push` workflows.
 on:
-  release:
-    types: [published]
+  push:
+    tags: ["[0-9]+.[0-9]+.[0-9]+*"]
   workflow_dispatch:
 
 concurrency:
-  group: publish-${{ github.ref }}
+  group: publish-${{ github.ref_name }}
 
 permissions:
   contents: read
-  id-token: write # RubyGems trusted publishing
 
 jobs:
-  publish:
+  test:
     if: github.ref_type == 'tag'
+    uses: ./.github/workflows/test.yml
+
+  publish:
+    needs: test
     runs-on: ubuntu-latest
     environment: rubygems
+    permissions:
+      contents: read
+      id-token: write # RubyGems trusted publishing
     steps:
       - uses: actions/checkout@v6
 

@@ -1,7 +1,8 @@
 name: Release
 
 # Helo::VERSION is the source of truth: when it changes on main, tag that
-# commit and create the GitHub release. publish.yml then pushes the gem.
+# commit and create the GitHub release. publish.yml then pushes the gem (it also
+# runs on its own when a version tag is pushed by hand).
 on:
   push:
     branches: [main]
