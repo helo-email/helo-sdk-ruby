@@ -25,7 +25,6 @@ require "helo-email-sdk"
 
 Helo.configure do |config|
   config.api_key = ENV.fetch("HELO_API_KEY")
-  config.base_url = "https://api.helohq.com" # optional, this is the default
 end
 ```
 
@@ -59,6 +58,52 @@ rescue Helo::APIError => e
   e.errors  # field-level validation errors, when present
 end
 ```
+
+## Rails (ActionMailer)
+
+The gem registers a `:helo` delivery method with ActionMailer, so existing
+mailers send through the API without any changes. Configure the SDK in an initializer:
+
+```ruby
+# config/initializers/helo.rb
+Helo.configure do |config|
+  config.api_key = Rails.application.credentials.helo_api_key
+end
+```
+
+and switch the delivery method:
+
+```ruby
+# config/environments/production.rb
+config.action_mailer.delivery_method = :helo
+```
+
+Plain ActionMailer fields map to the API: `from`, `to`, `cc`, `bcc`, `reply_to`, `subject`, the
+text and HTML parts, attachments (`attachments.inline` ones keep their content id, so
+`image_tag attachments["logo.png"].url` works), and any custom headers. API-specific options go
+in `delivery_method_options`, which other delivery methods (`:test`, letter_opener, SMTP) ignore:
+
+```ruby
+class UserMailer < ApplicationMailer
+  def welcome(user)
+    headers["X-Custom-Header"] = "value" # custom headers are sent as-is
+    mail(
+      to: user.email,
+      subject: "Welcome!",
+      delivery_method_options: {
+        tags: ["welcome"],
+        metadata: { user_id: user.id.to_s },
+        tracking: { opens: true, links: false },
+        idempotency_key: "welcome-#{user.id}", # retries won't send twice
+        channel_id: "..."
+      }
+    )
+  end
+end
+```
+
+After delivery, `message[:helo_message_id].value` is the id the API assigned the
+message, and failed requests raise `Helo::APIError` (subject to `config.action_mailer.raise_delivery_errors`).
 
 ## Webhook signature verification
 

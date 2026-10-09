@@ -4,7 +4,7 @@
 | ------ | ------------ | ----------- |
 | [**send_transactional**](Sending.md#send_transactional) | **POST** /send/transactional | Send a transactional email |
 | [**send_transactional_batch**](Sending.md#send_transactional_batch) | **POST** /send/transactional/batch | Send transactional emails in batch |
-| [**send_broadcast**](Sending.md#send_broadcast) | **POST** /send/broadcast | Send_broadcast operation |
+| [**send_broadcast**](Sending.md#send_broadcast) | **POST** /send/broadcast | Send a broadcast |
 | [**send_broadcast_message**](Sending.md#send_broadcast_message) | **POST** /send/broadcast/message | Send a single broadcast email |
 
 
@@ -69,7 +69,9 @@ Helo::Sending.send_transactional_batch(send_message_batch_request, channel_id: "
 
 > <SendBroadcastResponse> send_broadcast(send_broadcast_request, channel_id:, idempotency_key:)
 
-Send_broadcast operation
+Send a broadcast
+
+Sends a broadcast of multiple messages for marketing or announcement purposes.
 
 ### Example
 

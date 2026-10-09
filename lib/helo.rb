@@ -18,6 +18,8 @@ require_relative "helo/api_error"
 require_relative "helo/configuration"
 require_relative "helo/client"
 require_relative "helo/webhook_signatures"
+require_relative "helo/mailer"
+require_relative "helo/railtie" if defined?(Rails::Railtie)
 
 
 module Helo
