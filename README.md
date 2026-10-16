@@ -167,4 +167,5 @@ To compute a signature yourself — signing a fixture in tests, for example — 
 - [Helo::Broadcasts](docs/Broadcasts.md)
 - [Helo::Statistics](docs/Statistics.md)
 - [Helo::Suppressions](docs/Suppressions.md)
+- [Helo::Templates](docs/Templates.md)
 - [Helo::Webhooks](docs/Webhooks.md)
