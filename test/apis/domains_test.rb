@@ -16,7 +16,7 @@ class DomainsTest < Minitest::Test
   end
 
   def test_create
-    request_data = { name: "test-name", channel_ids: ["550e8400-e29b-41d4-a716-446655440000", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"] }
+    request_data = { name: "test-name", channel_ids: ["550e8400-e29b-41d4-a716-446655440000", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"], enable_custom_tracking: true }
 
     stub_request(:post, "http://localhost:8002/domains")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
@@ -41,7 +41,7 @@ class DomainsTest < Minitest::Test
 
   def test_update
     id = "550e8400-e29b-41d4-a716-446655440000"
-    request_data = { channel_ids: ["550e8400-e29b-41d4-a716-446655440000", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"] }
+    request_data = { channel_ids: ["550e8400-e29b-41d4-a716-446655440000", "6ba7b810-9dad-11d1-80b4-00c04fd430c8"], enable_custom_tracking: true }
 
     stub_request(:patch, "http://localhost:8002/domains/#{id}")
       .with(headers: { "Authorization" => "Bearer test-token-123" })
