@@ -17,7 +17,7 @@
 
 List operation
 
-Fetch a paginated list of Templates.
+Fetch a paginated list of templates.
 
 ### Example
 
@@ -42,7 +42,7 @@ Helo::Templates.list(opts)
 
 Create operation
 
-Create a new Template.
+Create a new template.
 
 ### Example
 
@@ -96,7 +96,7 @@ Helo::Templates.render_draft(render_draft_request)
 
 Retrieve operation
 
-Fetch a single Template.
+Fetch a single template.
 
 ### Example
 
@@ -116,7 +116,7 @@ Helo::Templates.retrieve(id)
 
 Update operation
 
-Update an existing Template.
+Update an existing template.
 
 ### Example
 
@@ -145,7 +145,7 @@ Helo::Templates.update(id, update_template_request)
 
 Delete operation
 
-Delete a Template.
+Delete a template.
 
 ### Example
 
@@ -165,7 +165,7 @@ Helo::Templates.delete(id)
 
 Render operation
 
-Render a saved Template with sample data.
+Render a saved template with sample data.
 
 ### Example
 
