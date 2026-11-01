@@ -2,22 +2,22 @@
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**list**](Templates.md#list) | **GET** /templates | List operation |
-| [**create**](Templates.md#create) | **POST** /templates | Create operation |
-| [**render_draft**](Templates.md#render_draft) | **POST** /templates/render | Render_draft operation |
-| [**retrieve**](Templates.md#retrieve) | **GET** /templates/{id} | Retrieve operation |
-| [**update**](Templates.md#update) | **PATCH** /templates/{id} | Update operation |
-| [**delete**](Templates.md#delete) | **DELETE** /templates/{id} | Delete operation |
-| [**render**](Templates.md#render) | **POST** /templates/{id}/render | Render operation |
+| [**list**](Templates.md#list) | **GET** /templates | List all templates |
+| [**create**](Templates.md#create) | **POST** /templates | Create a template |
+| [**render_draft**](Templates.md#render_draft) | **POST** /templates/render | Render template content |
+| [**retrieve**](Templates.md#retrieve) | **GET** /templates/{id} | Retrieve a template |
+| [**update**](Templates.md#update) | **PATCH** /templates/{id} | Update a template |
+| [**delete**](Templates.md#delete) | **DELETE** /templates/{id} | Delete a template |
+| [**render**](Templates.md#render) | **POST** /templates/{id}/render | Render a template |
 
 
 ## list
 
 > <PaginatedResponseOfTemplateSummaryResponse> list(opts)
 
-List operation
+List all templates
 
-Fetch a paginated list of templates.
+Retrieves a paginated list of templates, optionally filtered by name or channel.
 
 ### Example
 
@@ -40,9 +40,9 @@ Helo::Templates.list(opts)
 
 > <TemplateResponse> create(create_template_request)
 
-Create operation
+Create a template
 
-Create a new template.
+Creates a new template from HTML, MJML, or plain-text content. MJML is compiled to HTML when the template is saved.
 
 ### Example
 
@@ -67,9 +67,9 @@ Helo::Templates.create(create_template_request)
 
 > <RenderTemplateResponse> render_draft(render_draft_request)
 
-Render_draft operation
+Render template content
 
-Render ad-hoc template content (Subject/Html/Text) with sample data, without persisting anything.
+Renders unsaved template content (subject, HTML or MJML, and text) with sample data, without persisting anything.
 
 ### Example
 
@@ -94,9 +94,9 @@ Helo::Templates.render_draft(render_draft_request)
 
 > <TemplateResponse> retrieve(id)
 
-Retrieve operation
+Retrieve a template
 
-Fetch a single template.
+Fetches the details and content of a specific template.
 
 ### Example
 
@@ -114,9 +114,9 @@ Helo::Templates.retrieve(id)
 
 > <TemplateResponse> update(id, update_template_request)
 
-Update operation
+Update a template
 
-Update an existing template.
+Modifies an existing template. Only the provided fields are changed.
 
 ### Example
 
@@ -143,9 +143,9 @@ Helo::Templates.update(id, update_template_request)
 
 > delete(id)
 
-Delete operation
+Delete a template
 
-Delete a template.
+Permanently removes a template. This action cannot be undone.
 
 ### Example
 
@@ -163,9 +163,9 @@ Helo::Templates.delete(id)
 
 > <RenderTemplateResponse> render(id, render_template_request)
 
-Render operation
+Render a template
 
-Render a saved template with sample data.
+Renders a saved template with sample data, to preview the output before sending.
 
 ### Example
 

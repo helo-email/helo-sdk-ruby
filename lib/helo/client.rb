@@ -22,7 +22,7 @@ module Helo
     end
 
     def handle_connection_error(exception)
-      raise APIError.new("Connection failed: #{exception.message}")
+      raise ConnectionError.new("Connection failed: #{exception.message}")
     end
   end
 end

@@ -20,4 +20,7 @@ module Helo
       @_json_response ||= response_body.try(:deep_symbolize_keys) || {}
     end
   end
+
+  class ConnectionError < APIError
+  end
 end
