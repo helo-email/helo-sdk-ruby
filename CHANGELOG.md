@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0
+
+- Added `Helo::ConnectionError`, raised when the API can't be reached (the
+  connection failed or timed out). It's a subclass of `Helo::APIError`, so
+  existing `rescue Helo::APIError` still catches it.
+- Improved the documentation of the template methods, including MJML support.
+
 ## 1.2.0
 
 - Added sending template management
