@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.4.0
+
+- Added automatic retries. A request that fails with a network error, a timeout, or a
+  `408`, `429` or `5xx` response is retried up to 2 times with backoff, but only when sending it
+  again can't do anything twice. Set `config.max_retries` to change how many, or `0` to disable
+  them.
+- `send_transactional`, `send_transactional_batch`, `send_broadcast` and
+  `send_broadcast_message` now generate an idempotency key when you don't pass
+  `idempotency_key`, and send the same key on every retry, so a send whose response was lost is
+  never sent twice.
+
 ## 1.3.0
 
 - Added `Helo::ConnectionError`, raised when the API can't be reached (the
