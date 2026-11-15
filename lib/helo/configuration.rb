@@ -2,7 +2,7 @@
 
 module Helo
   class Configuration < Helo::Core::Configuration
-    def initialize(base_url: "https://api.helohq.com", api_key: nil, max_retries: DEFAULT_MAX_RETRIES)
+    def initialize(base_url: "https://api.helohq.com", api_key: nil, retry_options: {})
       super
     end
   end

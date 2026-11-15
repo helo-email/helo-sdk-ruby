@@ -2,15 +2,15 @@
 
 require "test_helper"
 
-# The retry policy every Helo SDK shares.
 class RetriesTest < Minitest::Test
   URL = "http://localhost:8002/things"
   JSON_HEADERS = { "Content-Type" => "application/json" }.freeze
 
   def client(max_retries: 2)
-    Helo::Client.new(
-      Helo::Configuration.new(base_url: "http://localhost:8002", api_key: "test-key", max_retries: max_retries)
+    configuration = Helo::Configuration.new(
+      base_url: "http://localhost:8002", api_key: "test-key", retry_options: { max: max_retries, interval: 0 }
     )
+    Helo::Client.new(configuration)
   end
 
   def test_retries_an_idempotent_request
@@ -29,7 +29,6 @@ class RetriesTest < Minitest::Test
     assert_requested :post, URL, times: 2, headers: { "X-Example-Idempotency-Key" => "key-1" }
   end
 
-  # Without a key, the server may have acted on the first attempt before failing.
   def test_does_not_retry_a_post_without_an_idempotency_key
     stub_request(:post, URL).to_return(status: 503, headers: { "Retry-After" => "0" })
 
@@ -51,7 +50,6 @@ class RetriesTest < Minitest::Test
     assert_equal 200, client.request(:get, "/things").status
   end
 
-  # A 429 means the server refused the request without acting on it.
   def test_retries_a_rate_limited_post_even_without_a_key
     stub_request(:post, URL).to_return({ status: 429, headers: { "Retry-After" => "0" } }, { status: 204 })
 
@@ -80,15 +78,13 @@ class RetriesTest < Minitest::Test
     assert_requested :get, URL, times: 1
   end
 
-  # A send whose response is lost must not be sent twice: the SDK generates a key
-  # when the caller doesn't pass one, and reuses it on the retry.
   def test_generates_one_idempotency_key_per_call
     keys = []
     stub_request(:post, "http://localhost:8002/send/transactional")
       .with { |request| keys << request.headers["X-Helo-Idempotency-Key"] }
       .to_return({ status: 503, headers: { "Retry-After" => "0" } }, { status: 200, body: "{}", headers: JSON_HEADERS })
 
-    Helo::Sending.send_transactional({ from: { email: "from@yourdomain.com", name: "From name" }, to: [{ email: "to@example.com", name: "To name" }], cc: [{ email: "cc@example.com", name: "Cc name" }], bcc: [{ email: "bcc@example.com", name: "Bcc name" }], reply_to: [{ email: "reply-to@example.com", name: "Reply-To name" }], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", tracking: { opens: true, links: true }, attachments: [{ content: "SGVsbG8gd29ybGQ=", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT }], tags: ["welcome", "onboarding"], headers: {}, metadata: {} })
+    Helo::Sending.new(client).send_transactional({ from: { email: "from@yourdomain.com", name: "From name" }, to: [{ email: "to@example.com", name: "To name" }], cc: [{ email: "cc@example.com", name: "Cc name" }], bcc: [{ email: "bcc@example.com", name: "Bcc name" }], reply_to: [{ email: "reply-to@example.com", name: "Reply-To name" }], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", tracking: { opens: true, links: true }, attachments: [{ content: "SGVsbG8gd29ybGQ=", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT }], tags: ["welcome", "onboarding"], headers: {}, metadata: {} })
 
     assert_equal 2, keys.size
     assert_equal keys.first, keys.last

@@ -31,7 +31,7 @@ end
 ## Automatic retries
 
 A request that fails with a network error, a timeout, or a `408`, `429`, `500`, `502`, `503` or
-`504` response is retried up to 2 times, with exponential backoff and full jitter. It
+`504` response is retried up to 2 times, with exponential backoff and jitter. It
 is only retried when sending it again can't do anything twice: a `GET`, `PUT` or `DELETE`,
 or a request carrying an idempotency key. A `429` is always retried, since the server
 refused the request without acting on it. A `Retry-After` header is honoured; one asking
@@ -41,12 +41,14 @@ Operations that take an idempotency key generate one for each call when you don'
 one, and send it on every retry, so a send whose response was lost is never sent twice.
 Pass your own key to make your own retries (a background job run again, say) safe too.
 
-Set `config.max_retries` to change how many, or to `0` to disable them:
+Retries are done by [faraday-retry](https://github.com/lostisland/faraday-retry), and
+`config.retry_options` is merged over the options the SDK gives it: `max:` changes how many
+(`0` disables them), `interval:` the first wait, and `retry_block:` can log each retry.
 
 ```ruby
 Helo.configure do |config|
   config.api_key = ENV.fetch("HELO_API_KEY")
-  config.max_retries = 0
+  config.retry_options = { max: 0 }
 end
 ```
 
