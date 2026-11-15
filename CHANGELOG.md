@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.0.0
+
+- Automatic retries now go through the `faraday-retry` middleware, a new dependency. The policy is
+  unchanged apart from the backoff, which waits at least the base delay rather than a random part of it.
+- **Breaking:** `config.max_retries` is replaced by `config.retry_options`, a hash merged over the
+  options the SDK gives `faraday-retry`. Use `config.retry_options = { max: 0 }` to disable retries;
+  `interval:` changes the wait and `retry_block:` hooks into each retry.
+
 ## 1.4.0
 
 - Added automatic retries. A request that fails with a network error, a timeout, or a
