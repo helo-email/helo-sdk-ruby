@@ -6,7 +6,6 @@ module Helo
       request = SendMessageRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
-      # Generated once per call, so a retry is recognized as the same request.
       headers["X-Helo-Idempotency-Key"] = idempotency_key || Client.idempotency_key
       response = @client.request(:post, "/send/transactional", body: request.to_params, headers: headers)
       SendMessageAcceptedResponse.from_hash(response.body)
@@ -16,7 +15,6 @@ module Helo
       request = SendMessageBatchRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
-      # Generated once per call, so a retry is recognized as the same request.
       headers["X-Helo-Idempotency-Key"] = idempotency_key || Client.idempotency_key
       response = @client.request(:post, "/send/transactional/batch", body: request.to_params, headers: headers)
       SendMessageBatchResponse.from_hash(response.body)
@@ -26,7 +24,6 @@ module Helo
       request = SendBroadcastRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
-      # Generated once per call, so a retry is recognized as the same request.
       headers["X-Helo-Idempotency-Key"] = idempotency_key || Client.idempotency_key
       response = @client.request(:post, "/send/broadcast", body: request.to_params, headers: headers)
       SendBroadcastResponse.from_hash(response.body)
@@ -36,7 +33,6 @@ module Helo
       request = SendMessageRequest.new(request_data)
       headers = {}
       headers["X-Helo-Channel-Id"] = channel_id unless channel_id.nil?
-      # Generated once per call, so a retry is recognized as the same request.
       headers["X-Helo-Idempotency-Key"] = idempotency_key || Client.idempotency_key
       response = @client.request(:post, "/send/broadcast/message", body: request.to_params, headers: headers)
       SendMessageAcceptedResponse.from_hash(response.body)

@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activemodel", ">= 7.0"
   spec.add_dependency "faraday", ">= 2.0"
+  spec.add_dependency "faraday-retry", ">= 2.0"
 
   spec.add_development_dependency "actionmailer", ">= 7.0"
   spec.add_development_dependency "minitest", "~> 5.16"
