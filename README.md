@@ -28,30 +28,6 @@ Helo.configure do |config|
 end
 ```
 
-## Automatic retries
-
-A request that fails with a network error, a timeout, or a `408`, `429`, `500`, `502`, `503` or
-`504` response is retried up to 2 times, with exponential backoff and jitter. It
-is only retried when sending it again can't do anything twice: a `GET`, `PUT` or `DELETE`,
-or a request carrying an idempotency key. A `429` is always retried, since the server
-refused the request without acting on it. A `Retry-After` header is honoured; one asking
-for more than 8 seconds is not retried early, and the error is returned instead.
-
-Operations that take an idempotency key generate one for each call when you don't pass
-one, and send it on every retry, so a send whose response was lost is never sent twice.
-Pass your own key to make your own retries (a background job run again, say) safe too.
-
-Retries are done by [faraday-retry](https://github.com/lostisland/faraday-retry), and
-`config.retry_options` is merged over the options the SDK gives it: `max:` changes how many
-(`0` disables them), `interval:` the first wait, and `retry_block:` can log each retry.
-
-```ruby
-Helo.configure do |config|
-  config.api_key = ENV.fetch("HELO_API_KEY")
-  config.retry_options = { max: 0 }
-end
-```
-
 ## Usage
 
 Each API is a class with class-level methods. Responses come back as model objects with
@@ -68,20 +44,6 @@ result = Helo::Channels.list(limit: 10)
 ```
 
 See the [API docs](#apis) for every method, with a runnable example each.
-
-### Errors
-
-Failed requests raise `Helo::APIError`:
-
-```ruby
-begin
-  Helo::Channels.list
-rescue Helo::APIError => e
-  e.code    # HTTP status
-  e.detail  # human-readable detail from the API
-  e.errors  # field-level validation errors, when present
-end
-```
 
 ## Rails (ActionMailer)
 
@@ -128,6 +90,35 @@ end
 
 After delivery, `message[:helo_message_id].value` is the id the API assigned the
 message, and failed requests raise `Helo::APIError` (subject to `config.action_mailer.raise_delivery_errors`).
+
+## Errors
+
+Failed requests raise `Helo::APIError`:
+
+```ruby
+begin
+  Helo::Channels.list
+rescue Helo::APIError => e
+  e.code    # HTTP status
+  e.detail  # human-readable detail from the API
+  e.errors  # field-level validation errors, when present
+end
+```
+
+## Automatic retries
+
+A request that fails with a network error, a timeout, or a `408`, `429` or `5xx` response is
+retried up to 2 times with backoff, when sending it again is safe. Operations that take an
+idempotency key generate one if you don't pass it, so a retried send is never delivered twice.
+
+Retries use [faraday-retry](https://github.com/lostisland/faraday-retry); `config.retry_options`
+overrides its options:
+
+```ruby
+Helo.configure do |config|
+  config.retry_options = { max: 0 } # no retries
+end
+```
 
 ## Webhook signature verification
 
