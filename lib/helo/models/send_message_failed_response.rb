@@ -7,5 +7,6 @@ module Helo
     api_attribute :status, :string, key: "status"
     api_attribute :error_code, :string, key: "errorCode"
     api_attribute :error_message, :string, key: "errorMessage"
+    api_attribute :errors, key: "errors"
   end
 end

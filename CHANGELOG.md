@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0
+
+- Added `validation` parameter to batch sending requests, allowing control over the processing behaviour of partial failures.
+
 ## 2.0.0
 
 - Automatic retries now go through the `faraday-retry` middleware, a new dependency. The policy is

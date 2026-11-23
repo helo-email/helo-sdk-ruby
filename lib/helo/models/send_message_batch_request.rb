@@ -4,6 +4,7 @@ module Helo
   class SendMessageBatchRequest
     include Helo::Core::Model
 
+    api_attribute :validation, :string, key: "validation"
     api_attribute :requests, Helo::Core::ArrayType.new("Helo::SendMessageRequest"), key: "requests"
   end
 end

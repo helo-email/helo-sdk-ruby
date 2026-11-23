@@ -58,6 +58,7 @@ Helo.configure do |config|
 end
 
 send_message_batch_request = Helo::SendMessageBatchRequest.new(
+  validation: Helo::BatchValidationMode::STRICT,
   requests: [{ from: { email: "from@yourdomain.com", name: "From name" }, to: [{ email: "to@example.com", name: "To name" }], cc: [{ email: "cc@example.com", name: "Cc name" }], bcc: [{ email: "bcc@example.com", name: "Bcc name" }], reply_to: [{ email: "reply-to@example.com", name: "Reply-To name" }], subject: "Hello from Helo", html: "<html><body><h1>Hi there, new friend.</h1><p>This is a test message, delivered with <3 by Helo. </p></body></html>", text: "This is a test message, delivered with <3 by Helo.", tracking: { opens: true, links: true }, attachments: [{ content: "SGVsbG8gd29ybGQ=", content_id: "test-contentId", content_type: "test-contentType", file_name: "test-fileName", disposition: Helo::AttachmentDisposition::ATTACHMENT }], tags: ["welcome", "onboarding"], headers: {}, metadata: {} }]
 )
 Helo::Sending.send_transactional_batch(send_message_batch_request, channel_id: "550e8400-e29b-41d4-a716-446655440000", idempotency_key: "example")
