@@ -15,28 +15,28 @@ module Helo
     end
 
     def retrieve(id)
-      response = @client.request(:get, "/domains/#{id}")
+      response = @client.request(:get, "/domains/#{path_param(id)}")
       DomainWithDnsResponse.from_hash(response.body)
     end
 
     def update(id, request_data)
       request = UpdateDomainRequest.new(request_data)
-      response = @client.request(:patch, "/domains/#{id}", body: request.to_params)
+      response = @client.request(:patch, "/domains/#{path_param(id)}", body: request.to_params)
       DomainResponse.from_hash(response.body)
     end
 
     def delete(id)
-      response = @client.request(:delete, "/domains/#{id}")
+      response = @client.request(:delete, "/domains/#{path_param(id)}")
       nil
     end
 
     def verify(id)
-      response = @client.request(:post, "/domains/#{id}/verify")
+      response = @client.request(:post, "/domains/#{path_param(id)}/verify")
       DnsRecordsResponse.from_hash(response.body)
     end
 
     def rotate_key(id)
-      response = @client.request(:post, "/domains/#{id}/rotate-key")
+      response = @client.request(:post, "/domains/#{path_param(id)}/rotate-key")
       DnsRecordResponse.from_hash(response.body)
     end
 

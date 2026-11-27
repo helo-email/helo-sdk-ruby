@@ -21,24 +21,24 @@ module Helo
     end
 
     def retrieve(id)
-      response = @client.request(:get, "/templates/#{id}")
+      response = @client.request(:get, "/templates/#{path_param(id)}")
       TemplateResponse.from_hash(response.body)
     end
 
     def update(id, request_data)
       request = UpdateTemplateRequest.new(request_data)
-      response = @client.request(:patch, "/templates/#{id}", body: request.to_params)
+      response = @client.request(:patch, "/templates/#{path_param(id)}", body: request.to_params)
       TemplateResponse.from_hash(response.body)
     end
 
     def delete(id)
-      response = @client.request(:delete, "/templates/#{id}")
+      response = @client.request(:delete, "/templates/#{path_param(id)}")
       nil
     end
 
     def render(id, request_data)
       request = RenderTemplateRequest.new(request_data)
-      response = @client.request(:post, "/templates/#{id}/render", body: request.to_params)
+      response = @client.request(:post, "/templates/#{path_param(id)}/render", body: request.to_params)
       RenderTemplateResponse.from_hash(response.body)
     end
 

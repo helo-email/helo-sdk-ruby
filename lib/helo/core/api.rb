@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "active_support/core_ext/class/attribute"
+require "uri"
 
 module Helo::Core
   # Base class for all API resources
@@ -17,6 +18,12 @@ module Helo::Core
 
     def initialize(client)
       @client = client
+    end
+
+    private
+
+    def path_param(value)
+      URI.encode_uri_component(value)
     end
   end
 end

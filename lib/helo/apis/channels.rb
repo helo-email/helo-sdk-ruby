@@ -15,18 +15,18 @@ module Helo
     end
 
     def retrieve(id)
-      response = @client.request(:get, "/channels/#{id}")
+      response = @client.request(:get, "/channels/#{path_param(id)}")
       ChannelDetailsResponse.from_hash(response.body)
     end
 
     def update(id, request_data)
       request = UpdateChannelRequest.new(request_data)
-      response = @client.request(:patch, "/channels/#{id}", body: request.to_params)
+      response = @client.request(:patch, "/channels/#{path_param(id)}", body: request.to_params)
       ChannelDetailsResponse.from_hash(response.body)
     end
 
     def delete(id)
-      response = @client.request(:delete, "/channels/#{id}")
+      response = @client.request(:delete, "/channels/#{path_param(id)}")
       nil
     end
 

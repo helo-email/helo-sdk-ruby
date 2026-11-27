@@ -15,7 +15,7 @@ module Helo
     end
 
     def retrieve_message(id)
-      response = @client.request(:get, "/activity/messages/#{id}")
+      response = @client.request(:get, "/activity/messages/#{path_param(id)}")
       MessageDetailsResponse.from_hash(response.body)
     end
 

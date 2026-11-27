@@ -9,19 +9,19 @@ module Helo
     end
 
     def retrieve(id)
-      response = @client.request(:get, "/broadcasts/#{id}")
+      response = @client.request(:get, "/broadcasts/#{path_param(id)}")
       BroadcastDetailsResponse.from_hash(response.body)
     end
 
     def list_failures(id, request_data = {})
       request = BroadcastsListFailuresRequest.new(request_data)
-      response = @client.request(:get, "/broadcasts/#{id}/failures", params: request.to_params)
+      response = @client.request(:get, "/broadcasts/#{path_param(id)}/failures", params: request.to_params)
       PaginatedResponseOfBroadcastFailure.from_hash(response.body)
     end
 
     def list_suppressions(id, request_data = {})
       request = BroadcastsListSuppressionsRequest.new(request_data)
-      response = @client.request(:get, "/broadcasts/#{id}/suppressions", params: request.to_params)
+      response = @client.request(:get, "/broadcasts/#{path_param(id)}/suppressions", params: request.to_params)
       PaginatedResponseOfBroadcastSuppression.from_hash(response.body)
     end
 

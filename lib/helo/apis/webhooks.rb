@@ -15,23 +15,23 @@ module Helo
     end
 
     def retrieve(id)
-      response = @client.request(:get, "/webhooks/#{id}")
+      response = @client.request(:get, "/webhooks/#{path_param(id)}")
       WebhookResponse.from_hash(response.body)
     end
 
     def update(id, request_data)
       request = UpdateWebhookRequest.new(request_data)
-      response = @client.request(:patch, "/webhooks/#{id}", body: request.to_params)
+      response = @client.request(:patch, "/webhooks/#{path_param(id)}", body: request.to_params)
       WebhookResponse.from_hash(response.body)
     end
 
     def delete(id)
-      response = @client.request(:delete, "/webhooks/#{id}")
+      response = @client.request(:delete, "/webhooks/#{path_param(id)}")
       nil
     end
 
     def regenerate_signing_key(id)
-      response = @client.request(:post, "/webhooks/#{id}/regenerate-signing-key")
+      response = @client.request(:post, "/webhooks/#{path_param(id)}/regenerate-signing-key")
       WebhookResponse.from_hash(response.body)
     end
 
